@@ -1,16 +1,17 @@
 ---
+const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/sobre', label: 'Sobre' },
-  { href: '/servicos', label: 'Serviços' },
-  { href: '/blog', label: 'Blog' },
+  { href: `${base}`, label: 'Home' },
+  { href: `${base}sobre`, label: 'Sobre' },
+  { href: `${base}servicos`, label: 'Serviços' },
+  { href: `${base}blog`, label: 'Blog' },
 ];
 ---
 
 <nav class="nav">
   <div class="nav__inner container">
-    <a href="/" class="nav__brand">
+    <a href={base} class="nav__brand">
       <svg class="nav__logo" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 12 L8 12 L12 4 L16 16 L20 8 L24 12 L40 12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
