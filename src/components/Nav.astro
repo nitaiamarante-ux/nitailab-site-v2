@@ -1,0 +1,182 @@
+---
+const currentPath = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<nav class="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__brand">
+      <svg class="nav__logo" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 12 L8 12 L12 4 L16 16 L20 8 L24 12 L40 12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="nav__name">NITAI LAB</span>
+    </a>
+
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav__menu">
+      <ul class="nav__links">
+        {links.map(link => (
+          <li>
+            <a href={link.href} class:list={['nav__link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href="https://wa.me/551152865757?text=Olá,%20gostaria%20de%20entender%20o%20método%20da%20Nitai%20Lab." class="btn btn--primary nav__cta" target="_blank" rel="noopener">
+        Entender o método
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 64px;
+    background: rgba(245, 240, 235, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--bdr);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: var(--dark);
+  }
+
+  .nav__logo {
+    width: 32px;
+    height: 16px;
+    color: var(--gold);
+  }
+
+  .nav__name {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+  }
+
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav__links {
+    display: flex;
+    list-style: none;
+    gap: 1.75rem;
+  }
+
+  .nav__link {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+  }
+
+  .nav__link:hover,
+  .nav__link.active {
+    color: var(--dark);
+  }
+
+  .nav__cta {
+    font-size: 0.75rem;
+    padding: 0.625rem 1.5rem;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav__toggle span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--dark);
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .nav__toggle {
+      display: flex;
+    }
+
+    .nav__menu {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(245, 240, 235, 0.97);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--bdr);
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+    }
+
+    .nav__menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nav__links {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav__link {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>
