@@ -140,7 +140,7 @@ import Footer from '../components/Footer.astro';
   <section class="section" id="sobre">
     <div class="container sobre">
       <div class="sobre__img reveal">
-        <img src="/img/nitai.png" alt="Nitai — fundador da Nitai Lab" loading="lazy" />
+        <img src={`${import.meta.env.BASE_URL}img/nitai.png`} alt="Nitai — fundador da Nitai Lab" loading="lazy" />
       </div>
       <div class="sobre__text reveal">
         <span class="eyebrow">Quem está por trás</span>
