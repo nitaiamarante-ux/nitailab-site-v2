@@ -10,6 +10,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
   <!-- CENA 1 — HERO -->
   <section class="hero">
+    <img src={`${base}img/nitai-hero-v2.png`} alt="" class="hero__bg" />
     <div class="hero__body">
       <p class="eyebrow hero__eyebrow">Exclusivo para clínicas de estética</p>
       <h1 class="hero__h1">Agenda cheia não<br />vem de indicação.<br /><em>Vem de método.</em></h1>
@@ -71,7 +72,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- CENA 5 — NITAI -->
   <section class="nitai">
     <div class="nitai__foto">
-      <img src={`${base}img/nitai-sobre.png`} alt="Nitai — fundador" />
+      <img src={`${base}img/nitai-casual.png`} alt="Nitai — fundador" />
       <div class="nitai__tag">
         <span>Nitai · Fundador</span>
       </div>
@@ -110,6 +111,22 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     overflow: hidden;
     padding-top: 64px;
     background: var(--dark);
+  }
+
+  .hero__bg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: auto;
+    max-width: 55%;
+    object-fit: contain;
+    object-position: right bottom;
+    opacity: 0.35;
+    z-index: 1;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 85%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 85%);
+    pointer-events: none;
   }
 
   .hero__body {
