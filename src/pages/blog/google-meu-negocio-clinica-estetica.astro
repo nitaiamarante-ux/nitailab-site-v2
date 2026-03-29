@@ -51,7 +51,9 @@ const faq = [
 
 <p>Sabe o que o Google faz com isso? Exatamente o que você faria com um currículo mal feito: ignora.</p>
 
-<!-- PENDÊNCIA: foto real — print de busca "clínica de estética perto de mim" mostrando os 3 primeiros resultados no mapa. Nitai tira o print real do celular. -->
+<div class="blog-img">
+  <img src={`${import.meta.env.BASE_URL}img/nitai-whiteboard.png`} alt="Nitai planejando estratégia de Google Meu Negócio no flipchart" loading="lazy" />
+</div>
 
 <h2>Categoria errada é o erro mais caro</h2>
 
@@ -69,7 +71,6 @@ const faq = [
 
 <p>Pega o celular agora, tira uma foto decente do espaço com luz natural, e sobe no perfil. Leva dois minutos. O retorno dura meses.</p>
 
-<!-- PENDÊNCIA: foto real — Nitai no celular fotografando um espaço de clínica (Krea.ai com LoRA), OU print de perfil GMN real mostrando fotos boas vs fotos ruins lado a lado -->
 
 <h2>A avaliação negativa que você está ignorando</h2>
 
@@ -89,7 +90,40 @@ const faq = [
 
 <p>A clínica que posta toda semana aparece. A que postou pela última vez em novembro de 2024 desaparece. É injusto? Talvez. Mas é assim que funciona.</p>
 
-<!-- PENDÊNCIA: print real — comparativo de dois perfis GMN: um ativo com postagens recentes vs um abandonado. Nitai pode pegar exemplos reais e anonimizar. -->
+<div class="gmn-compare">
+  <div class="gmn-card gmn-card--good">
+    <div class="gmn-badge gmn-badge--good">Perfil ativo</div>
+    <h4>Clínica Estética Aurora</h4>
+    <span class="gmn-cat">Clínica de estética</span>
+    <div class="gmn-stars">★★★★★ <span>4.9 (127 avaliações)</span></div>
+    <div class="gmn-photos">
+      <div class="gmn-photo"></div>
+      <div class="gmn-photo"></div>
+      <div class="gmn-photo"></div>
+    </div>
+    <div class="gmn-post">
+      <span class="gmn-post-label">Postagem recente</span>
+      <p>Protocolo de skincare personalizado disponível</p>
+      <span class="gmn-post-date">Há 3 dias</span>
+    </div>
+  </div>
+  <div class="gmn-vs">vs</div>
+  <div class="gmn-card gmn-card--bad">
+    <div class="gmn-badge gmn-badge--bad">Abandonado</div>
+    <h4>Salão Beleza Total</h4>
+    <span class="gmn-cat">Salão de beleza</span>
+    <div class="gmn-stars gmn-stars--low">★★★☆☆ <span>3.2 (8 avaliações)</span></div>
+    <div class="gmn-photos gmn-photos--empty">
+      <div class="gmn-photo gmn-photo--empty">Sem foto</div>
+      <div class="gmn-photo gmn-photo--empty">Sem foto</div>
+      <div class="gmn-photo gmn-photo--empty">Sem foto</div>
+    </div>
+    <div class="gmn-no-post">
+      Nenhuma postagem<br />
+      <span>Última atualização: nov/2024</span>
+    </div>
+  </div>
+</div>
 
 <h2>O que eu faria se fosse montar do zero hoje</h2>
 
