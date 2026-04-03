@@ -40,13 +40,16 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Schema.org — Organization -->
+  <!-- Schema.org — MarketingAgency (LocalBusiness) -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "MarketingAgency",
     "name": "Nitai Lab",
     "url": siteUrl,
-    "description": "Agência especializada em crescimento para clínicas de estética.",
+    "logo": siteUrl + "/images/logo.svg",
+    "description": "Agência de marketing digital exclusiva para clínicas de estética em São Paulo. Combinamos inteligência artificial, dados e estratégia para transformar a presença digital de clínicas que querem atrair mais pacientes qualificados.",
+    "telephone": "+55-11-5286-5757",
+    "email": "comercial@nitailab.com.br",
     "founder": {
       "@type": "Person",
       "name": "Nitai Amarante",
@@ -60,20 +63,50 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
       "email": "comercial@nitailab.com.br",
       "availableLanguage": "Portuguese"
     },
+    "areaServed": {
+      "@type": "City",
+      "name": "São Paulo",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "São Paulo",
+        "containedInPlace": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    },
     "sameAs": [
       "https://www.instagram.com/nitai.trafegopago/"
     ],
-    "areaServed": {
-      "@type": "Country",
-      "name": "Brasil"
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços Nitai Lab",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gestão de Google Meu Negócio", "description": "Otimização completa do perfil, posts, reviews e relatórios mensais de performance para clínicas de estética."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tráfego Pago para Clínicas", "description": "Campanhas de Google Ads e Meta Ads focadas em pacientes qualificados para clínicas de estética."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SEO Local", "description": "Posicionamento orgânico nas buscas locais do Google para clínicas de estética em São Paulo."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Criação de Conteúdo", "description": "Conteúdo estratégico para redes sociais e blog focado em atrair pacientes de estética."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-mail Marketing", "description": "Campanhas de email segmentadas para nutrição e conversão de leads de clínicas."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketing de Mídia Social", "description": "Gestão estratégica de Instagram e redes sociais para clínicas de estética."}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Consultoria de Estratégia", "description": "Diagnóstico completo e plano estratégico personalizado para crescimento digital de clínicas."}}
+      ]
     },
     "knowsAbout": [
       "Tráfego pago para clínicas de estética",
       "Google Meu Negócio para clínicas",
-      "Compliance de anúncios para estética",
+      "SEO local para clínicas de estética",
       "Marketing digital para clínicas de estética",
       "Meta Ads para estética",
-      "Google Ads para clínicas"
+      "Google Ads para clínicas",
+      "Inteligência artificial aplicada a marketing"
     ]
   })} />
 </head>

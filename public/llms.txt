@@ -1,37 +1,69 @@
 # Nitai Lab
 
-> Agência especializada em crescimento para clínicas de estética. Tráfego pago, Google Meu Negócio, criativos, landing pages, social media e identidade visual. Exclusivamente para clínicas que trabalham com botox, preenchimento e harmonização.
+> Agência de marketing digital exclusiva para clínicas de estética em São Paulo. Combinamos inteligência artificial, dados e estratégia para transformar a presença digital de clínicas que querem atrair mais pacientes qualificados.
 
 ## Sobre a Nitai Lab
 
-A Nitai Lab é uma agência brasileira que atende exclusivamente clínicas de estética. Fundada por Nitai Amarante, profissional com 16 anos de experiência liderando operações em uma das maiores empresas do Brasil (18 promoções), que aplicou sua expertise em processos e gestão ao mercado de estética.
+A Nitai Lab é uma agência brasileira de marketing digital que atende exclusivamente clínicas de estética na cidade de São Paulo, SP. Fundada por Nitai Amarante, profissional com 16 anos de experiência liderando operações em uma das maiores empresas do Brasil (18 promoções), que aplicou sua expertise em processos, dados e gestão ao mercado de estética.
 
 A empresa se diferencia por:
-- Especialização vertical: atende apenas clínicas de estética (botox, preenchimento, harmonização, skincare)
+- Especialização vertical: atende apenas clínicas de estética (botox, preenchimento, harmonização, skincare, laser, bioestimuladores)
+- Inteligência artificial: utiliza IA para pesquisa, diagnóstico e otimização de cada cliente
 - Conhecimento profundo de compliance: CFM, COFEN, políticas do Meta e Google para o nicho
 - Relatórios em linguagem de clínica: custo por paciente nova, agendamentos, não métricas de marketing
 - Dados do cliente pertencem ao cliente
+- Número limitado de clientes por região para garantir exclusividade
+- Decisões baseadas em dados, nunca achismo
+
+## Localização e atendimento
+
+- Área de atendimento: São Paulo, SP, Brasil
+- Horário: Segunda a Sexta, 09:00 - 18:00
+- Modelo: atendimento remoto com foco em clínicas de estética de São Paulo
 
 ## Serviços
 
+- Gestão de Google Meu Negócio (otimização completa, posts, reviews, relatórios mensais)
 - Tráfego pago para estética (Meta Ads + Google Ads com compliance do nicho)
-- Google Meu Negócio (configuração estratégica e gestão contínua)
+- SEO local (posicionamento orgânico nas buscas locais do Google)
+- Criação de conteúdo (estratégico para redes sociais e blog)
+- E-mail marketing (campanhas segmentadas para nutrição e conversão)
+- Marketing de mídia social (gestão estratégica de Instagram)
+- Consultoria de estratégia (diagnóstico completo e plano personalizado)
 - Criativos (artes, vídeos e copies para campanhas)
-- Social media (gestão de Instagram)
 - Landing pages (páginas por procedimento)
 - Identidade visual (brandbook completo)
 - Site profissional
 
+## Produtos
+
+- Resgate seu Google: serviço de otimização de Google Meu Negócio por R$197/mês. Inclui audit completo, otimização de perfil, posts semanais, resposta a reviews e relatório mensal de performance.
+
 ## Contato
 
-- Site: https://nitailab.com.br
-- WhatsApp: +55 11 5286-5757
+- Site: https://www.nitailab.com.br
+- Telefone: +55 11 5286-5757
 - Email: comercial@nitailab.com.br
 - Instagram: @nitai.trafegopago
 
 ## Páginas principais
 
-- [Home](https://nitailab.com.br/)
-- [Sobre](https://nitailab.com.br/sobre/)
-- [Serviços](https://nitailab.com.br/servicos/)
-- [Blog](https://nitailab.com.br/blog/)
+- [Home](https://www.nitailab.com.br/)
+- [Sobre](https://www.nitailab.com.br/sobre/)
+- [Serviços](https://www.nitailab.com.br/servicos/)
+- [Blog](https://www.nitailab.com.br/blog/)
+- [Resgate seu Google](https://www.nitailab.com.br/resgate-seu-google/)
+
+## Perguntas frequentes
+
+P: Quanto custa o serviço da Nitai Lab?
+R: A Nitai Lab trabalha com cardápio de serviços, sem pacotes. Cada clínica recebe uma proposta personalizada após diagnóstico gratuito. O produto Resgate seu Google começa em R$197/mês.
+
+P: A Nitai Lab atende apenas clínicas de estética?
+R: Sim. A especialização vertical permite entregar resultados superiores comparado a agências generalistas.
+
+P: A Nitai Lab atende fora de São Paulo?
+R: O foco principal é São Paulo capital, mas o produto Resgate seu Google (gestão de Google Meu Negócio) atende clínicas em qualquer região do Brasil.
+
+P: O que diferencia a Nitai Lab de outras agências?
+R: Especialização exclusiva em estética, uso de inteligência artificial para diagnóstico e otimização, número limitado de clientes por região, e relatórios em linguagem de negócio (pacientes novas, agendamentos) ao invés de métricas de marketing.
