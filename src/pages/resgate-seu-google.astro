@@ -2280,4 +2280,68 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       });
     }
   }, true);
+
+  // === INTELIGÊNCIA DE COMPORTAMENTO ===
+  (function() {
+    var maxScroll = 0;
+    var scrollMilestones = {25: false, 50: false, 75: false, 100: false};
+    var startTime = Date.now();
+    var engaged = false;
+
+    // Scroll depth tracking
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = Math.round((scrollTop / docHeight) * 100);
+      if (pct > maxScroll) maxScroll = pct;
+
+      for (var milestone in scrollMilestones) {
+        if (!scrollMilestones[milestone] && pct >= parseInt(milestone)) {
+          scrollMilestones[milestone] = true;
+          if (typeof gtag === 'function') {
+            gtag('event', 'scroll_depth', { percent: milestone, page: 'resgate-google' });
+          }
+          if (parseInt(milestone) >= 75 && typeof fbq === 'function' && !engaged) {
+            fbq('trackCustom', 'HighEngagement', { scroll: milestone, time_on_page: Math.round((Date.now() - startTime) / 1000) });
+            engaged = true;
+          }
+        }
+      }
+    });
+
+    // Time on page tracking (30s, 60s, 120s)
+    var timeMarkers = [30, 60, 120];
+    timeMarkers.forEach(function(sec) {
+      setTimeout(function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'time_on_page', { seconds: sec, page: 'resgate-google' });
+        }
+      }, sec * 1000);
+    });
+
+    // Track which sections are viewed (Intersection Observer)
+    if ('IntersectionObserver' in window) {
+      var sections = document.querySelectorAll('section[class*="rg-"]');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var name = entry.target.className.match(/rg-[\w-]+/);
+            if (name && typeof gtag === 'function') {
+              gtag('event', 'section_view', { section: name[0], page: 'resgate-google' });
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      sections.forEach(function(s) { observer.observe(s); });
+    }
+
+    // Track exit intent (mouse leaves viewport)
+    document.addEventListener('mouseout', function(e) {
+      if (e.clientY < 5 && typeof gtag === 'function') {
+        gtag('event', 'exit_intent', { scroll_depth: maxScroll, time: Math.round((Date.now() - startTime) / 1000) });
+        document.removeEventListener('mouseout', arguments.callee);
+      }
+    });
+  })();
 </script>
