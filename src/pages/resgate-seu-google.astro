@@ -2233,8 +2233,18 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
         leads.push(data);
         localStorage.setItem('rg_leads', JSON.stringify(leads));
 
-        // TODO: enviar pra API/webhook
-        // fetch('/api/lead', { method: 'POST', body: JSON.stringify(data) });
+        // Enviar pra Cloudflare Worker
+        fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.nome,
+            email: data.email,
+            phone: data.whatsapp,
+            source: 'resgate-google-popup',
+            page: window.location.href
+          })
+        }).catch(function() {});
 
         var box = formPopup.querySelector('.rg-popup__box');
         box.innerHTML = '<div style="padding:20px 0;text-align:center;">' +
@@ -2246,4 +2256,28 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       });
     }
   })();
+</script>
+
+<script is:inline>
+  // Meta Pixel — track checkout clicks
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="pay.hotmart.com"]');
+    if (link && typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Resgate seu Google',
+        content_category: 'GMN',
+        value: 197.00,
+        currency: 'BRL'
+      });
+    }
+  });
+  // Track lead capture popup submission
+  document.addEventListener('submit', function(e) {
+    if (e.target.closest('.rg-popup__form') && typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Resgate seu Google - Popup',
+        content_category: 'GMN'
+      });
+    }
+  }, true);
 </script>
