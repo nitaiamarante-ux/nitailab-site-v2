@@ -305,6 +305,11 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
           <p>Tem. O Google cria um pra toda empresa com endereço físico, mesmo que você nunca tenha tocado nele. A gente localiza e assume.</p>
         </details>
         <details class="rg-faq__item reveal">
+          <summary>O que está incluso e o que não está?</summary>
+          <p><strong>Incluso:</strong> auditoria de 30 pontos, descrição reescrita com keywords reais, categorias e serviços ajustados, fotos organizadas, 4 publicações por mês, todas as avaliações respondidas, relatório mensal, caça de keywords e alerta de avaliação negativa.</p>
+          <p><strong>Não incluso:</strong> nosso foco é exclusivamente Google Meu Negócio. Não fazemos gestão de redes sociais, criação de site, anúncios pagos ou produção de fotos/vídeos. Fazemos uma coisa e fazemos bem.</p>
+        </details>
+        <details class="rg-faq__item reveal">
           <summary>Tem contrato? Multa?</summary>
           <p>Nenhum dos dois. Mês a mês. Não gostou, cancela. Sem e-mail, sem retenção, sem aquele "vamos agendar uma call pra entender o motivo". Sai quando quiser.</p>
         </details>
@@ -346,33 +351,6 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
     <span class="rg-cta-mid__badge">7 dias de garantia</span>
   </div>
 
-  <!-- O QUE NÃO ESTÁ INCLUSO -->
-  <section class="rg-nao section section--alt">
-    <div class="container container--sm">
-      <span class="eyebrow reveal">Transparência</span>
-      <h2 class="rg-nao__h2 reveal">O que não está incluso.</h2>
-      <div class="rg-nao__grid">
-        <div class="rg-nao__item reveal">
-          <span class="rg-nao__x">×</span>
-          <p>Anúncio pago (Google Ads, Meta Ads)</p>
-        </div>
-        <div class="rg-nao__item reveal">
-          <span class="rg-nao__x">×</span>
-          <p>Criação de site ou landing page</p>
-        </div>
-        <div class="rg-nao__item reveal">
-          <span class="rg-nao__x">×</span>
-          <p>Gestão de redes sociais</p>
-        </div>
-        <div class="rg-nao__item reveal">
-          <span class="rg-nao__x">×</span>
-          <p>Produção de fotos ou vídeos</p>
-        </div>
-      </div>
-      <p class="rg-nao__frase reveal">Aqui é só Google Meu Negócio. Feito direito, todo mês, sem distração. Se precisar do resto, a gente conversa à parte.</p>
-    </div>
-  </section>
-
   <!-- AUDITORIA GRÁTIS -->
   <section class="rg-auditoria section" id="auditoria">
     <div class="container container--sm">
@@ -392,6 +370,25 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
         <span class="rg-garantia__badge">7 dias</span>
         <h3>Não gostou, devolvemos.</h3>
         <p>Assina, vê o trabalho no seu perfil. Se em 7 dias achar que não valeu, pede o dinheiro de volta. Devolvemos 100%. Sem formulário, sem justificativa, sem pergunta constrangedora.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO GRATUITO -->
+  <section class="rg-diagnostico section">
+    <div class="container container--sm">
+      <div class="rg-diagnostico__box reveal">
+        <span class="eyebrow">Grátis</span>
+        <h2 class="rg-diagnostico__h2">Quer saber como está o Google da sua clínica?</h2>
+        <p class="rg-diagnostico__sub">Diagnóstico gratuito de 30 pontos. Sem compromisso.</p>
+        <form class="rg-diagnostico__form" id="diagForm">
+          <input type="tel" name="whatsapp" placeholder="DDD + número" required class="rg-diagnostico__input" />
+          <button type="submit" class="btn btn--gold rg-diagnostico__cta">Quero meu diagnóstico</button>
+        </form>
+        <div class="rg-diagnostico__ok" id="diagOk" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <p>Recebido. Vamos analisar seu perfil e te chamar no WhatsApp.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -418,7 +415,7 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       <div class="rg-urgencia__inner reveal">
         <h2 class="rg-urgencia__h2">Enquanto você lê isso,<br />alguém pesquisou seu<br />procedimento no Google.<br /><em>E não te encontrou.</em></h2>
         <a href={checkoutUrl} class="btn btn--dark rg-urgencia__cta">Resolver isso agora</a>
-        <p class="rg-urgencia__vagas">Vagas limitadas — cada perfil recebe atenção individual.</p>
+        <p class="rg-urgencia__vagas">Aceito no máximo 15 clínicas por mês — cada perfil recebe atenção individual.</p>
       </div>
     </div>
   </section>
@@ -498,6 +495,7 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
   "mainEntity": [
     { "@type": "Question", "name": "Preciso ter site para usar o Resgate seu Google?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O Google Meu Negócio funciona sozinho. A maioria das clínicas que atendemos não tem site e aparece no Google do mesmo jeito." }},
     { "@type": "Question", "name": "Nem sei se tenho perfil no Google Meu Negócio", "acceptedAnswer": { "@type": "Answer", "text": "O Google cria um perfil para toda empresa com endereço físico, mesmo que você nunca tenha tocado nele. A gente localiza e assume a gestão." }},
+    { "@type": "Question", "name": "O que está incluso e o que não está?", "acceptedAnswer": { "@type": "Answer", "text": "Incluso: auditoria de 30 pontos, descrição reescrita com keywords reais, categorias e serviços ajustados, fotos organizadas, 4 publicações por mês, todas as avaliações respondidas, relatório mensal, caça de keywords e alerta de avaliação negativa. Não incluso: gestão de redes sociais, criação de site, anúncios pagos ou produção de fotos/vídeos. Nosso foco é exclusivamente Google Meu Negócio." }},
     { "@type": "Question", "name": "Tem contrato ou multa?", "acceptedAnswer": { "@type": "Answer", "text": "Nenhum dos dois. Mês a mês, cancela quando quiser. Sem burocracia." }},
     { "@type": "Question", "name": "Quando começo a aparecer no Google?", "acceptedAnswer": { "@type": "Answer", "text": "Na primeira semana o perfil já está otimizado. Ranking melhora progressivamente, com primeiros sinais em 30 dias." }},
     { "@type": "Question", "name": "Google Meu Negócio substitui anúncio pago?", "acceptedAnswer": { "@type": "Answer", "text": "Não, complementa. Google Meu Negócio é tráfego orgânico de pacientes que já estão procurando. Anúncio traz volume. Os dois juntos é o cenário ideal." }},
@@ -1550,61 +1548,106 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
     letter-spacing: 0.01em;
   }
 
-  /* O QUE NÃO FAZEMOS */
-  .rg-nao__h2 {
-    margin-bottom: 40px;
+  /* DIAGNÓSTICO GRATUITO */
+  .rg-diagnostico {
+    background: var(--bg2);
   }
 
-  .rg-nao__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--bdr);
-    border: 1px solid var(--bdr);
-    margin-bottom: 40px;
-  }
-
-  .rg-nao__item {
+  .rg-diagnostico__box {
+    text-align: center;
+    padding: 64px 40px;
+    border: 2px solid var(--gold);
     background: var(--bg);
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    border-radius: 8px;
   }
 
-  .rg-nao__x {
+  .rg-diagnostico__h2 {
     font-family: 'Urbanist', sans-serif;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--soft);
-    flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--bdr);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 36px);
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-top: 16px;
+    margin-bottom: 12px;
   }
 
-  .rg-nao__item p {
+  .rg-diagnostico__sub {
     font-family: 'Outfit', sans-serif;
     font-size: 16px;
     font-weight: 300;
     color: var(--mid);
-    line-height: 1.5;
-    margin: 0;
+    line-height: 1.8;
+    margin: 0 auto 32px;
   }
 
-  .rg-nao__frase {
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--soft);
-    line-height: 1.8;
-    text-align: center;
-    max-width: 560px;
+  .rg-diagnostico__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 440px;
     margin: 0 auto;
+  }
+
+  .rg-diagnostico__input {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--dark);
+    background: rgba(245, 240, 235, 0.95);
+    border: 1px solid rgba(160, 120, 64, 0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .rg-diagnostico__input:focus {
+    border-color: var(--gold);
+    background: #fff;
+  }
+
+  .rg-diagnostico__input::placeholder {
+    color: var(--soft);
+    font-weight: 300;
+  }
+
+  .rg-diagnostico__cta {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .rg-diagnostico__ok {
+    padding: 20px 0 0;
+  }
+
+  .rg-diagnostico__ok p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    margin-top: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .rg-diagnostico__form {
+      flex-direction: column;
+    }
+
+    .rg-diagnostico__input {
+      width: 100%;
+    }
+
+    .rg-diagnostico__cta {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .rg-diagnostico__box {
+      padding: 48px 24px;
+    }
   }
 
   /* AUDITORIA GRÁTIS */
@@ -2051,10 +2094,6 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       font-size: 28px;
     }
 
-    .rg-nao__grid {
-      grid-template-columns: 1fr;
-    }
-
     .rg-preco {
       padding: 80px 24px;
     }
@@ -2169,16 +2208,16 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
           }
         }, { passive: true });
 
-        // Fallback: 45s + 50% de scroll (se não scrollou pra cima)
+        // Fallback: 30s + 40% de scroll (se não scrollou pra cima)
         setTimeout(function() {
           var check = function() {
             var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-            if (pct > 0.5) {
+            if (pct > 0.4) {
               show();
             } else {
               window.addEventListener('scroll', function onFallback() {
                 var p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-                if (p > 0.5) {
+                if (p > 0.4) {
                   show();
                   window.removeEventListener('scroll', onFallback);
                 }
@@ -2186,7 +2225,7 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
             }
           };
           check();
-        }, 45000);
+        }, 30000);
       }
     }
 
@@ -2255,6 +2294,49 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
         setTimeout(hideForm, 3000);
       });
     }
+  })();
+</script>
+
+<script>
+  // Diagnosis form handler
+  (function() {
+    var diagForm = document.getElementById('diagForm');
+    var diagOk = document.getElementById('diagOk');
+    if (!diagForm) return;
+
+    diagForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var whatsapp = diagForm.whatsapp.value;
+
+      // Fire Meta Pixel Lead event
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Resgate seu Google - Diagnostico',
+          content_category: 'GMN'
+        });
+      }
+
+      // POST to CF Worker
+      fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: whatsapp,
+          source: 'resgate-google-diagnostico',
+          page: window.location.href,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(function() {});
+
+      // Save locally
+      var leads = JSON.parse(localStorage.getItem('rg_leads') || '[]');
+      leads.push({ whatsapp: whatsapp, source: 'diagnostico', timestamp: new Date().toISOString() });
+      localStorage.setItem('rg_leads', JSON.stringify(leads));
+
+      // Show confirmation
+      diagForm.style.display = 'none';
+      diagOk.style.display = 'block';
+    });
   })();
 </script>
 
