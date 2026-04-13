@@ -251,13 +251,26 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
         </div>
       </div>
 
-      <!-- ESPAÇO PARA DEPOIMENTO — descomentar quando tiver -->
-      <!--
-      <blockquote class="rg-case__quote reveal">
-        <p>"DEPOIMENTO DA POLI AQUI"</p>
-        <cite>Dra. Poli Brito — Estética Facial e Harmonização, BH</cite>
-      </blockquote>
-      -->
+      <div class="rg-case__testimonial reveal">
+        <p class="rg-case__testimonial-label">Palavras da Dra. Poli, no WhatsApp:</p>
+        <div class="rg-case__prints">
+          <img
+            src="/lp/depoimentos/poli-brito-whatsapp-01.jpeg"
+            alt="Depoimento da Dra. Poli Brito no WhatsApp — parte 1"
+            loading="lazy"
+            width="380"
+            height="720"
+          />
+          <img
+            src="/lp/depoimentos/poli-brito-whatsapp-02.jpeg"
+            alt="Depoimento da Dra. Poli Brito no WhatsApp — parte 2"
+            loading="lazy"
+            width="380"
+            height="720"
+          />
+        </div>
+        <cite class="rg-case__testimonial-cite">Dra. Poli Brito — Estética Facial e Harmonização, Belo Horizonte</cite>
+      </div>
     </div>
   </section>
 
@@ -1052,6 +1065,58 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
     font-style: normal;
     letter-spacing: 0.04em;
     color: var(--soft);
+  }
+
+  .rg-case__testimonial {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+
+  .rg-case__testimonial-label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 24px;
+  }
+
+  .rg-case__prints {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .rg-case__prints img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .rg-case__testimonial-cite {
+    display: block;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.04em;
+    color: var(--soft);
+  }
+
+  @media (max-width: 640px) {
+    .rg-case__prints {
+      gap: 14px;
+    }
+    .rg-case__prints img {
+      max-width: 100%;
+    }
   }
 
   /* COMO FUNCIONA */
