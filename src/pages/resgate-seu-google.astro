@@ -2225,7 +2225,7 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       shown = true;
       popup.classList.add('active');
       popup.setAttribute('aria-hidden', 'false');
-      localStorage.setItem(STORAGE_KEY, '1');
+      sessionStorage.setItem(STORAGE_KEY, '1');
     }
 
     function hide() {
@@ -2233,7 +2233,7 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       popup.setAttribute('aria-hidden', 'true');
     }
 
-    if (localStorage.getItem(STORAGE_KEY)) return;
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
     {
 
       // Desktop: mouse sai pela parte de cima
