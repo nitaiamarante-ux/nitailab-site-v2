@@ -1,0 +1,2565 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const whatsappHref = 'https://wa.me/551152865757?text=Oi%2C%20quero%20saber%20mais%20sobre%20o%20Resgate%20seu%20Google';
+const whatsappAuditoria = 'https://wa.me/551152865757?text=Oi%2C%20quero%20o%20raio-X%20gr%C3%A1tis%20do%20meu%20Google';
+---
+
+<Base
+  title="Resgate seu Google — pra quem atende aqui na cidade"
+  description="Seu perfil no Google Maps tá largado. Quem procura o que você faz na cidade encontra o concorrente primeiro. A gente resolve — sem você mexer em nada."
+>
+  <!-- NAV MÍNIMO (LP focada) — só logo Nitai Lab + CTA WhatsApp -->
+  <nav class="rglp-nav">
+    <div class="rglp-nav__inner">
+      <a href={base} class="rglp-nav__brand" aria-label="Nitai Lab — home">
+        <svg class="rglp-nav__logo" viewBox="0 0 40 20" width="40" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12 L8 12 L12 4 L16 16 L20 8 L24 12 L40 12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="rglp-nav__name">NITAI LAB</span>
+      </a>
+      <a href={whatsappHref} target="_blank" rel="noopener" class="rglp-nav__cta">Falar no WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="rg-hero">
+    <!-- Grid de mapa sutil no fundo -->
+    <div class="rg-hero__mapgrid" aria-hidden="true"></div>
+
+    <div class="rg-hero__layout">
+      <div class="rg-hero__inner">
+        <p class="eyebrow">Pra quem atende aqui na cidade</p>
+        <div class="rg-hero__pinblock">
+          <svg class="rg-hero__pin" viewBox="0 0 56 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 2C14.2 2 3 13.2 3 27c0 19.8 25 50 25 50s25-30.2 25-50C53 13.2 41.8 2 28 2z" fill="var(--maps-red)" opacity="0.95"/>
+            <circle cx="28" cy="27" r="9" fill="#fff"/>
+            <text x="28" y="32" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="var(--maps-red)">1º</text>
+            <!-- mapa -->
+            <rect x="8" y="64" width="40" height="2.5" rx="1.25" fill="var(--maps-red)" opacity="0.22"/>
+            <rect x="14" y="69" width="28" height="2" rx="1" fill="var(--maps-red)" opacity="0.14"/>
+            <rect x="20" y="73" width="16" height="1.5" rx="0.75" fill="var(--maps-red)" opacity="0.08"/>
+          </svg>
+        </div>
+        <h1 class="rg-hero__h1">
+          Seu Google<br />tá largado.<br />
+          <em>A gente arruma.</em>
+        </h1>
+        <p class="rg-hero__sub">Seu perfil no Google Maps fica parado, desatualizado, com foto antiga. Enquanto isso, quem tá procurando o que você vende encontra o concorrente primeiro. A gente resolve isso com método, sem você mexer em nada.</p>
+        <a href={whatsappHref} target="_blank" rel="noopener" class="btn btn--primary rg-hero__cta">Falar no WhatsApp</a>
+        <a href="#auditoria" class="rg-hero__link">Quero o raio-X grátis do meu Google →</a>
+      </div>
+
+      <div class="rg-hero__mock">
+        <div class="rg-mock__card">
+          <div class="rg-mock__header">
+            <div class="rg-mock__searchbar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9AA0A6" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>oficina mecânica perto de mim</span>
+            </div>
+          </div>
+          <div class="rg-mock__results">
+            <div class="rg-mock__item rg-mock__item--competitor">
+              <div class="rg-mock__rank">1</div>
+              <div class="rg-mock__info">
+                <span class="rg-mock__name">Auto Center do João</span>
+                <span class="rg-mock__stars">★★★★★ <span class="rg-mock__count">(127)</span></span>
+                <span class="rg-mock__detail">Aberto · Perfil completo</span>
+              </div>
+            </div>
+            <div class="rg-mock__item rg-mock__item--competitor">
+              <div class="rg-mock__rank">2</div>
+              <div class="rg-mock__info">
+                <span class="rg-mock__name">Oficina Central</span>
+                <span class="rg-mock__stars">★★★★☆ <span class="rg-mock__count">(89)</span></span>
+                <span class="rg-mock__detail">Aberto · 12 serviços</span>
+              </div>
+            </div>
+            <div class="rg-mock__skip">
+              <span>·</span><span>·</span><span>·</span>
+              <span class="rg-mock__skip-txt">+156 negócios na frente</span>
+              <span>·</span><span>·</span><span>·</span>
+            </div>
+            <div class="rg-mock__item rg-mock__item--you">
+              <div class="rg-mock__rank rg-mock__rank--you">159</div>
+              <div class="rg-mock__info">
+                <span class="rg-mock__name rg-mock__name--you">Seu negócio</span>
+                <span class="rg-mock__stars">★★<span class="rg-mock__star--empty">★</span><span class="rg-mock__star--empty">★</span><span class="rg-mock__star--empty">★</span> <span class="rg-mock__count">(3 sem resposta)</span></span>
+                <span class="rg-mock__detail rg-mock__detail--warn">Sem descrição · Sem posts · Ignorado</span>
+              </div>
+            </div>
+          </div>
+          <p class="rg-mock__caption">Isso é o que o freguês vê quando procura o que você vende.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF BAR -->
+  <section class="rg-proof">
+    <div class="rg-proof__inner">
+      <div class="rg-proof__item">
+        <svg class="rg-proof__icon" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="var(--maps-red)" opacity="0.9"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
+        <span class="rg-proof__num">5</span>
+        <span class="rg-proof__label">perfis gerenciados no Google</span>
+      </div>
+      <div class="rg-proof__sep"></div>
+      <div class="rg-proof__item">
+        <svg class="rg-proof__icon" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--maps-yellow)" opacity="0.95"/></svg>
+        <span class="rg-proof__num">92<span class="rg-proof__of">/100</span></span>
+        <span class="rg-proof__label">maior score GBP entregue</span>
+      </div>
+      <div class="rg-proof__sep"></div>
+      <div class="rg-proof__item">
+        <svg class="rg-proof__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--maps-red)" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <span class="rg-proof__num">120</span>
+        <span class="rg-proof__label">dias de garantia de resultado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="rg-problema">
+    <div class="rg-problema__inner reveal">
+      <span class="rg-problema__a">Você atende bem demais.<br />O pessoal que chega aqui sabe.</span>
+      <div class="rg-problema__search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--maps-red)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>[seu serviço] na [sua cidade]</span>
+        <span class="rg-problema__cursor"></span>
+      </div>
+      <span class="rg-problema__b">
+        Mas quem tá procurando agora, no celular,<br />
+        ainda não te conhece.<br />
+        <em>E o Google não ajuda ninguém a te achar.</em>
+      </span>
+    </div>
+  </section>
+
+  <!-- CTA INTERMEDIÁRIO 1 -->
+  <div class="rg-cta-mid">
+    <a href={whatsappHref} target="_blank" rel="noopener" class="btn btn--gold rg-cta-mid__btn">Falar no WhatsApp</a>
+  </div>
+
+  <!-- NEGLIGÊNCIA -->
+  <section class="rg-neglig section">
+    <div class="container container--sm">
+      <div class="rg-neglig__grid">
+        <div class="rg-neglig__card rg-neglig__card--blue reveal">
+          <div class="rg-neglig__topbar"></div>
+          <div class="rg-neglig__body">
+            <div class="rg-neglig__status">
+              <svg class="rg-neglig__pin" viewBox="0 0 24 34" fill="none"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0z" fill="currentColor" opacity="0.15"/><path d="M12 8a4 4 0 100 8 4 4 0 000-8z" fill="currentColor" opacity="0.3"/></svg>
+              <span class="rg-neglig__badge">Não encontrado</span>
+            </div>
+            <h3>Invisível pra quem pesquisa</h3>
+            <p>Descrição vazia. Serviços não listados. Horário desatualizado. Pro Google, seu negócio <mark class="rg-hl rg-hl--blue">simplesmente não existe</mark> naquela busca.</p>
+            <div class="rg-neglig__alert rg-neglig__alert--blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+              <span>0 avaliações respondidas<br/>0 serviços listados</span>
+            </div>
+          </div>
+        </div>
+        <div class="rg-neglig__card rg-neglig__card--yellow reveal">
+          <div class="rg-neglig__topbar"></div>
+          <div class="rg-neglig__body">
+            <div class="rg-neglig__status">
+              <svg class="rg-neglig__pin" viewBox="0 0 24 34" fill="none"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0z" fill="currentColor" opacity="0.15"/><path d="M12 8a4 4 0 100 8 4 4 0 000-8z" fill="currentColor" opacity="0.3"/></svg>
+              <span class="rg-neglig__badge">Sem resposta</span>
+            </div>
+            <h3>Freguês elogia, ninguém responde</h3>
+            <p>Ele tirou 2 minutos pra te elogiar publicamente. Tá lá, sem resposta. O próximo que lê isso pensa: <mark class="rg-hl rg-hl--yellow">será que esse negócio ainda funciona?</mark></p>
+            <div class="rg-neglig__alert rg-neglig__alert--yellow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+              <span>★★★★☆ "Atendimento nota 10!"<br/><strong>Há 3 meses sem resposta</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="rg-neglig__card rg-neglig__card--red reveal">
+          <div class="rg-neglig__topbar"></div>
+          <div class="rg-neglig__body">
+            <div class="rg-neglig__status">
+              <svg class="rg-neglig__pin" viewBox="0 0 24 34" fill="none"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0z" fill="currentColor" opacity="0.15"/><path d="M12 8a4 4 0 100 8 4 4 0 000-8z" fill="currentColor" opacity="0.3"/></svg>
+              <span class="rg-neglig__badge">Inativo</span>
+            </div>
+            <h3>Perfil que virou mato</h3>
+            <p>Última postagem: nunca. Ou há meses. O Google entende atividade como relevância. Perfil parado vai pro final da fila. <mark class="rg-hl rg-hl--red">E lá embaixo ninguém olha.</mark></p>
+            <div class="rg-neglig__alert rg-neglig__alert--red">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+              <span>Última postagem: <strong>nunca</strong><br/>Última atualização: <strong>nunca</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="rg-neglig__frase reveal">A maioria dos donos de negócio local nem sabe que tem um perfil no Google. Ou sabe, mas trata como aquela gaveta que ninguém abre. O problema é que o concorrente aqui da esquina abriu a dele.</p>
+    </div>
+  </section>
+
+  <!-- O QUE FAZEMOS -->
+  <section class="rg-entrega section section--alt">
+    <div class="container container--sm">
+      <span class="eyebrow reveal"><svg class="rg-eyebrow__pin" viewBox="0 0 24 34" fill="none"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0z" fill="var(--gold)" opacity="0.7"/><circle cx="12" cy="12" r="3.5" fill="var(--dark)" opacity="0.4"/></svg> O que entra no seu mês</span>
+      <h2 class="rg-entrega__h2 reveal">Tudo que seu perfil precisa.<br />Nada que você precise fazer.</h2>
+
+      <div class="rg-entrega__setup reveal">
+        <h3>Setup inicial <span class="rg-entrega__tag">Mês 1</span></h3>
+        <ul>
+          <li>Auditoria de 30 pontos — a gente acha tudo que tá errado (e sempre tem)</li>
+          <li>Descrição reescrita com as palavras que o pessoal da cidade realmente pesquisa</li>
+          <li>Categorias, serviços e atributos ajustados pro algoritmo te encontrar</li>
+          <li>Fotos organizadas — capa, logo, galeria. Tudo no lugar certo</li>
+          <li>Endereço, horário, telefone, WhatsApp — tudo conferido e atualizado</li>
+        </ul>
+      </div>
+
+      <div class="rg-entrega__recorrente reveal">
+        <h3>Todo mês <span class="rg-entrega__tag">Recorrente</span></h3>
+        <ul>
+          <li><strong>4 publicações no Google</strong> — com chamada pra ação, não post genérico</li>
+          <li><strong>Toda avaliação respondida</strong> — cada uma personalizada, no tom do seu negócio</li>
+          <li><strong>Relatório que você entende</strong> — quantas pessoas te viram, clicaram, ligaram, pediram rota. Sem jargão</li>
+          <li><strong>Caça de palavras da sua cidade</strong> — a gente encontra as buscas onde você quase aparece e empurra pra cima</li>
+          <li><strong>Alerta de avaliação negativa</strong> — resposta antes que o próximo freguês leia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE POLI BRITO -->
+  <section class="rg-case section">
+    <div class="container container--sm">
+      <span class="eyebrow reveal">Primeiro resgate</span>
+      <h2 class="rg-case__h2 reveal">Largado no Google.<br />92/100 em 60 dias.</h2>
+
+      <div class="rg-case__body reveal">
+        <div class="rg-case__stats">
+          <div class="rg-case__stat">
+            <span class="rg-case__num">81<sup>o</sup></span>
+            <span class="rg-case__label">Ranking antes</span>
+          </div>
+          <div class="rg-case__arrow">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--maps-red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="rg-case__stat">
+            <span class="rg-case__num rg-case__num--gold">28<sup>o</sup></span>
+            <span class="rg-case__label">Ranking depois</span>
+          </div>
+          <div class="rg-case__stat rg-case__stat--score">
+            <span class="rg-case__num rg-case__num--gold">92<span class="rg-case__of">/100</span></span>
+            <span class="rg-case__label">Score do perfil</span>
+          </div>
+        </div>
+
+        <div class="rg-case__detail">
+          <p><strong>Dra. Poli Brito</strong> — Estética Facial, Belo Horizonte. <em>Primeira cliente. Abriu o caminho.</em></p>
+          <p>Perfil sem descrição. Serviços não cadastrados. Avaliações ignoradas. O tipo de Google que todo dono de negócio tem e finge que não.</p>
+          <p>Em 60 dias, sem anúncio e sem site:</p>
+          <ul>
+            <li>Descrição reescrita com as palavras que o cliente realmente pesquisa</li>
+            <li>Serviços cadastrados um a um, com palavras da cidade</li>
+            <li>48 avaliações — todas respondidas, uma por uma</li>
+            <li>Posts semanais ativos no perfil</li>
+            <li>Ranking pra busca principal: saiu da posição 81 pra 28</li>
+          </ul>
+          <p class="rg-case__note">O mesmo método serve ótica, oficina, pet shop, padaria, restaurante, loja de materiais, academia — qualquer negócio local que depende de quem procura na cidade.</p>
+        </div>
+      </div>
+
+      <div class="rg-case__testimonial reveal">
+        <p class="rg-case__testimonial-label">Palavras da Dra. Poli, no WhatsApp:</p>
+        <div class="rg-case__prints">
+          <img
+            src="/lp/depoimentos/poli-brito-whatsapp-01.jpeg"
+            alt="Depoimento da Dra. Poli Brito no WhatsApp — parte 1"
+            loading="lazy"
+            width="380"
+            height="720"
+          />
+          <img
+            src="/lp/depoimentos/poli-brito-whatsapp-02.jpeg"
+            alt="Depoimento da Dra. Poli Brito no WhatsApp — parte 2"
+            loading="lazy"
+            width="380"
+            height="720"
+          />
+        </div>
+        <cite class="rg-case__testimonial-cite">Dra. Poli Brito — Estética Facial, Belo Horizonte · 2026</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA INTERMEDIÁRIO 2 -->
+  <div class="rg-cta-mid">
+    <a href={whatsappHref} target="_blank" rel="noopener" class="btn btn--gold rg-cta-mid__btn">Falar no WhatsApp agora</a>
+  </div>
+
+  <!-- COMO FUNCIONA -->
+  <section class="rg-como section section--alt">
+    <div class="container container--sm">
+      <span class="eyebrow reveal">Como funciona</span>
+      <h2 class="rg-como__h2 reveal">Sem enrolação.<br />Sem jargão. Sem você ter que mexer.</h2>
+      <div class="rg-como__grid">
+        <div class="rg-como__step reveal">
+          <span class="rg-como__n">01</span>
+          <h3>A gente bate um papo</h3>
+          <p>WhatsApp, chamada rápida, ou visita se você tá aqui na cidade. Sem call de 1 hora, sem formulário grande.</p>
+        </div>
+        <div class="rg-como__step reveal">
+          <span class="rg-como__n">02</span>
+          <h3>Libera o acesso ao Google</h3>
+          <p>2 minutos no celular. A gente te guia no WhatsApp. Você continua dono do perfil — só adiciona a gente como gestor.</p>
+        </div>
+        <div class="rg-como__step reveal">
+          <span class="rg-como__n">03</span>
+          <h3>Esquece que existe</h3>
+          <p>A partir daí é com a gente. Você cuida do atendimento. O Google cuida de trazer o próximo freguês. Print todo mês do que mudou.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="rg-faq section">
+    <div class="container container--sm">
+      <span class="eyebrow reveal">Perguntas frequentes</span>
+      <div class="rg-faq__list">
+        <details class="rg-faq__item reveal">
+          <summary>Serve pra qual tipo de negócio?</summary>
+          <p>Qualquer negócio local que depende de quem procura na cidade. Ótica, oficina, pet shop, salão, padaria, restaurante, clínica popular, academia de bairro, loja de materiais, consultório, mercado. Se o freguês precisa saber onde fica e como chegar, o método serve.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Preciso ter site?</summary>
+          <p>Não. O Google Meu Negócio funciona sozinho. A maioria dos negócios que a gente atende não tem site e aparece no Google do mesmo jeito.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Nem sei se tenho perfil no Google.</summary>
+          <p>Tem. O Google cria um pra todo negócio com endereço físico, mesmo que você nunca tenha tocado nele. A gente localiza e assume.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Vocês precisam da minha senha do Google?</summary>
+          <p>Não. Você adiciona a gente como gestor do perfil. Leva 2 minutos, a gente te guia no WhatsApp. Você continua dono, mantém o controle total — e tira a gente quando quiser.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Quanto custa?</summary>
+          <p>A gente preparou planos diferentes dependendo do tamanho do negócio e da concorrência na cidade. Chama no WhatsApp que a gente olha seu caso e manda a proposta certa. Sem pegadinha, sem contrato longo.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Tem contrato? Multa?</summary>
+          <p>Sem contrato longo e sem multa. Se não der certo, a gente tem uma garantia de 120 dias — se seu perfil não subir nos indicadores combinados, devolvemos. Detalhamos os critérios na proposta.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Quando começa a aparecer?</summary>
+          <p>Na primeira semana seu perfil já tá otimizado. Ranking melhora progressivamente — depende da concorrência da sua cidade e do seu bairro. Os primeiros sinais aparecem em 30 dias, resultado firme em 60-90.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>O que tá incluso?</summary>
+          <p><strong>Incluso:</strong> auditoria de 30 pontos, descrição reescrita com palavras que o pessoal da cidade pesquisa, categorias e serviços ajustados, fotos organizadas, 4 publicações por mês, todas as avaliações respondidas, relatório mensal em linguagem humana, caça de palavras-chave locais e alerta de avaliação negativa.</p>
+          <p><strong>Não incluso:</strong> a gente cuida <em>só</em> do Google. Não mexe em Instagram, não cria site, não faz anúncio pago, não produz foto ou vídeo. Fazemos uma coisa e fazemos bem.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Quem responde as avaliações?</summary>
+          <p>A gente. Cada resposta é escrita pra aquele freguês, no tom do seu negócio. Nada de "Obrigado pelo feedback!". Se quiser revisar antes, é só pedir.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>E se vier uma avaliação negativa?</summary>
+          <p>A gente responde antes que o próximo freguês leia. Com tom profissional, sem briga, sem desculpa genérica. Avaliação negativa bem respondida vende mais que cinco estrelas sem resposta.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Anúncio no Google tá incluso?</summary>
+          <p>Não. Aqui é o orgânico — aparecer sem pagar por clique, porque seu perfil tá bem feito. Se quiser anúncio, a gente orienta separado, mas muito negócio resolve só com o perfil certinho.</p>
+        </details>
+        <details class="rg-faq__item reveal">
+          <summary>Vocês são daqui?</summary>
+          <p>A Nitai Lab é pequena, com operação em Minas. A gente atende pessoalmente quem tá perto, e por WhatsApp quem tá mais longe. Falamos direto — sem intermediário, sem call center.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA INTERMEDIÁRIO 3 -->
+  <div class="rg-cta-mid">
+    <a href={whatsappHref} target="_blank" rel="noopener" class="btn btn--gold rg-cta-mid__btn">Quero ser achado no Google</a>
+    <span class="rg-cta-mid__badge">120 dias de garantia</span>
+  </div>
+
+  <!-- AUDITORIA / RAIO-X GRÁTIS -->
+  <section class="rg-auditoria section" id="auditoria">
+    <div class="container container--sm">
+      <div class="rg-auditoria__box reveal">
+        <span class="eyebrow">Raio-X grátis</span>
+        <h2 class="rg-auditoria__h2">Quer saber como seu Google tá hoje?</h2>
+        <p class="rg-auditoria__sub">A gente analisa seu perfil em 30 pontos e te manda o diagnóstico no WhatsApp em até 24h. Sem compromisso, sem pegadinha, sem call.</p>
+        <form class="rg-diagnostico__form" id="diagForm">
+          <input type="text" name="nome" placeholder="Seu nome" required class="rg-diagnostico__input" />
+          <input type="text" name="negocio" placeholder="Nome do seu negócio" required class="rg-diagnostico__input" />
+          <input type="text" name="cidade" placeholder="Cidade" required class="rg-diagnostico__input" />
+          <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required class="rg-diagnostico__input" />
+          <button type="submit" class="btn btn--gold rg-diagnostico__cta">Quero meu raio-X grátis</button>
+        </form>
+        <div class="rg-diagnostico__ok" id="diagOk" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--maps-red)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <p>Recebido. A gente analisa seu perfil e te chama no WhatsApp em até 24h.</p>
+        </div>
+        <p class="rg-auditoria__alt">Prefere falar direto? <a href={whatsappAuditoria} target="_blank" rel="noopener">Chama a gente no WhatsApp →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section class="rg-garantia section section--alt">
+    <div class="container container--sm">
+      <div class="rg-garantia__box reveal">
+        <span class="rg-garantia__badge">120 dias</span>
+        <h3>Não performou, devolvemos.</h3>
+        <p>A gente trabalha com meta clara: seu perfil sobe em indicadores objetivos — ranking, visualizações, cliques pra ligar ou pegar rota. Se em 120 dias nenhum desses subir, a gente devolve. Os critérios são escritos na proposta, sem letra miúda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- URGÊNCIA -->
+  <section class="rg-urgencia section">
+    <div class="container container--sm">
+      <div class="rg-urgencia__inner reveal">
+        <h2 class="rg-urgencia__h2">Enquanto você lê isso,<br />alguém procurou o que<br />você vende no Google.<br /><em>E não te encontrou.</em></h2>
+        <a href={whatsappHref} target="_blank" rel="noopener" class="btn btn--dark rg-urgencia__cta">Resolver isso agora</a>
+        <p class="rg-urgencia__vagas">A gente atende no máximo 15 negócios por mês — cada perfil recebe atenção individual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXIT INTENT POPUP -->
+  <div class="rg-popup" id="exitPopup" aria-hidden="true">
+    <div class="rg-popup__overlay" id="exitOverlay"></div>
+    <div class="rg-popup__box">
+      <button class="rg-popup__close" id="exitClose" aria-label="Fechar">&times;</button>
+      <svg class="rg-popup__pin" viewBox="0 0 56 82" fill="none">
+        <path d="M28 2C14.2 2 3 13.2 3 27c0 19.8 25 50 25 50s25-30.2 25-50C53 13.2 41.8 2 28 2z" fill="var(--maps-red)" opacity="0.95"/>
+        <circle cx="28" cy="27" r="9" fill="#fff"/>
+        <text x="28" y="32" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="var(--maps-red)">1º</text>
+        <rect x="8" y="64" width="40" height="2.5" rx="1.25" fill="var(--maps-red)" opacity="0.22"/>
+        <rect x="14" y="69" width="28" height="2" rx="1" fill="var(--maps-red)" opacity="0.14"/>
+        <rect x="20" y="73" width="16" height="1.5" rx="0.75" fill="var(--maps-red)" opacity="0.08"/>
+      </svg>
+      <div class="rg-popup__headline">
+        <svg class="rg-popup__warn" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--maps-red)" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <h3 class="rg-popup__h3">Seu Google não tá te ajudando.</h3>
+      </div>
+      <p class="rg-popup__benefit">Quer o raio-X grátis do seu perfil? A gente manda em 24h no seu WhatsApp.</p>
+      <button class="btn btn--gold rg-popup__cta" id="exitCta">Quero o raio-X grátis</button>
+      <span class="rg-popup__skip" id="exitSkip">Agora não</span>
+    </div>
+  </div>
+
+  <!-- POPUP 2 — FORMULÁRIO -->
+  <div class="rg-popup rg-popup--form" id="formPopup" aria-hidden="true">
+    <div class="rg-popup__overlay" id="formOverlay"></div>
+    <div class="rg-popup__box">
+      <button class="rg-popup__close" id="formClose" aria-label="Fechar">&times;</button>
+      <h3 class="rg-popup__h3">Onde a gente te manda o raio-X?</h3>
+      <form class="rg-popup__form" id="exitForm">
+        <input type="text" name="nome" placeholder="Seu nome" required class="rg-popup__input" />
+        <input type="text" name="negocio" placeholder="Nome do seu negócio" required class="rg-popup__input" />
+        <input type="text" name="cidade" placeholder="Cidade" required class="rg-popup__input" />
+        <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required class="rg-popup__input" />
+        <button type="submit" class="btn btn--gold rg-popup__cta">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <Footer />
+
+  <!-- WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/551152865757?text=Oi%2C%20quero%20saber%20mais%20sobre%20o%20Resgate%20seu%20Google" class="rg-wafloat" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- BARRA FIXA MOBILE -->
+  <div class="rg-stickybar">
+    <a href={whatsappHref} target="_blank" rel="noopener" class="rg-stickybar__btn">Falar no WhatsApp</a>
+  </div>
+</Base>
+
+<!-- Schema.org Service -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Resgate seu Google — Nitai Lab",
+  "description": "Gestão profissional do Google Meu Negócio para negócios locais. Otimização completa do perfil, publicações semanais, respostas de avaliações e relatório mensal.",
+  "provider": { "@type": "Organization", "name": "Nitai Lab", "url": "https://nitailab.com.br" },
+  "areaServed": { "@type": "Country", "name": "BR" },
+  "serviceType": "Gestão de Google Meu Negócio"
+})} />
+
+<!-- FAQ Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Serve pra qual tipo de negócio?", "acceptedAnswer": { "@type": "Answer", "text": "Qualquer negócio local que depende de quem procura na cidade. Ótica, oficina, pet shop, salão, padaria, restaurante, clínica popular, academia de bairro, loja de materiais, consultório, mercado. Se o freguês precisa saber onde fica e como chegar, o método serve." }},
+    { "@type": "Question", "name": "Preciso ter site?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O Google Meu Negócio funciona sozinho. A maioria dos negócios que atendemos não tem site e aparece no Google do mesmo jeito." }},
+    { "@type": "Question", "name": "Nem sei se tenho perfil no Google", "acceptedAnswer": { "@type": "Answer", "text": "Tem. O Google cria um para todo negócio com endereço físico. A gente localiza e assume." }},
+    { "@type": "Question", "name": "Vocês precisam da minha senha do Google?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Você adiciona a gente como gestor do perfil. Leva 2 minutos, você mantém o controle total." }},
+    { "@type": "Question", "name": "Quanto custa?", "acceptedAnswer": { "@type": "Answer", "text": "Planos diferentes dependendo do tamanho do negócio e da concorrência na cidade. Fale no WhatsApp para receber a proposta adequada." }},
+    { "@type": "Question", "name": "Tem contrato ou multa?", "acceptedAnswer": { "@type": "Answer", "text": "Sem contrato longo e sem multa. Garantia de 120 dias com critérios objetivos de performance detalhados na proposta." }},
+    { "@type": "Question", "name": "Quando começa a aparecer?", "acceptedAnswer": { "@type": "Answer", "text": "Na primeira semana o perfil já está otimizado. Primeiros sinais de ranking em 30 dias, resultado firme em 60-90 dias." }},
+    { "@type": "Question", "name": "O que está incluso?", "acceptedAnswer": { "@type": "Answer", "text": "Auditoria de 30 pontos, descrição otimizada com palavras da cidade, categorias e serviços ajustados, fotos organizadas, 4 publicações por mês, todas as avaliações respondidas, relatório mensal e alerta de avaliação negativa. Foco exclusivo em Google Meu Negócio." }},
+    { "@type": "Question", "name": "Quem responde as avaliações?", "acceptedAnswer": { "@type": "Answer", "text": "A Nitai Lab. Cada resposta personalizada no tom do negócio. Cliente pode revisar antes se quiser." }},
+    { "@type": "Question", "name": "E se vier uma avaliação negativa?", "acceptedAnswer": { "@type": "Answer", "text": "Respondemos antes que o próximo cliente leia, com tom profissional. Avaliação negativa bem respondida vende mais que cinco estrelas sem resposta." }},
+    { "@type": "Question", "name": "Anúncio no Google está incluso?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O foco é o tráfego orgânico — aparecer sem pagar por clique." }}
+  ]
+})} />
+
+<style is:global>
+  /* Import IBM Plex Sans (display da frente Resgate) */
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500;600;700&display=swap');
+
+  /* ============================
+     RESGATE SEU GOOGLE — LOCAL V2
+     Paleta: Brandbook Resgate v1 (verde Maps + amarelo pin + vermelho alerta)
+     Persona: Seu Zé do Balcão
+     Override escopado: cascateia nos blocos .rg-* e elementos filhos
+     ============================ */
+  body:has(.rg-hero__mock) {
+    --maps-red: #EA4335;
+    --maps-yellow: #FFCC00;
+    --maps-blue: #4285F4;
+    /* Sobrescreve --gold da marca-mãe pro vermelho Maps neste escopo */
+    --gold: #EA4335;
+  }
+
+  /* NAV MÍNIMO LP */
+  .rglp-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 64px;
+    background: rgba(245, 240, 235, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--bdr);
+  }
+  .rglp-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .rglp-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: var(--dark);
+  }
+  .rglp-nav__logo {
+    width: 32px;
+    height: 16px;
+    color: var(--maps-red);
+  }
+  .rglp-nav__name {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+  }
+  .rglp-nav__cta {
+    font-family: 'IBM Plex Sans', 'Urbanist', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    background: var(--maps-red);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .rglp-nav__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(234, 67, 53, 0.35);
+  }
+  @media (max-width: 480px) {
+    .rglp-nav__cta {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.875rem;
+    }
+    .rglp-nav__name {
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
+<style>
+
+  /* HERO */
+  .rg-hero {
+    min-height: 100svh;
+    padding-top: 64px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rg-hero__mapgrid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.04;
+    background-image:
+      linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 60% 50%, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 60% 50%, black 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .rg-hero__layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: calc(100svh - 64px);
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 48px;
+    gap: 48px;
+  }
+
+  .rg-hero__inner {
+    padding: 60px 0;
+  }
+
+  .rg-hero__pinblock {
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: rgPinDrop 0.6s ease 0.2s both;
+  }
+
+  .rg-hero__pin {
+    display: block;
+    width: 44px;
+    height: auto;
+    filter: drop-shadow(0 4px 16px rgba(160, 120, 64, 0.5));
+  }
+
+  .rg-hero__inner .eyebrow {
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rgUp 0.5s ease 0.15s forwards;
+  }
+
+  .rg-hero__h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 4.5vw, 58px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--bg);
+    opacity: 0;
+    animation: rgUp 0.7s ease 0.3s forwards;
+  }
+
+  .rg-hero__h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+    margin-top: 0.12em;
+  }
+
+  .rg-hero__sub {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(15px, 1.3vw, 17px);
+    font-weight: 200;
+    line-height: 1.7;
+    color: var(--soft);
+    margin-top: 28px;
+    max-width: 440px;
+    opacity: 0;
+    animation: rgUp 0.6s ease 0.5s forwards;
+  }
+
+  .rg-hero__cta {
+    margin-top: 36px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: rgUp 0.6s ease 0.7s forwards, rgPulse 2.5s ease-in-out 2s infinite;
+    box-shadow: 0 0 0 0 rgba(160, 120, 64, 0.4);
+  }
+
+  /* MOCK DENTRO DO HERO */
+  .rg-hero__mock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    opacity: 0;
+    animation: rgUp 0.8s ease 0.6s forwards;
+  }
+
+  /* PROBLEMA */
+  .rg-problema {
+    padding: 100px 48px;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rg-problema__inner {
+    max-width: 780px;
+    text-align: center;
+  }
+
+  .rg-problema__a {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: clamp(24px, 3.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--bg);
+    display: block;
+  }
+
+  .rg-problema__search {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+    padding: 14px 28px;
+    background: rgba(245, 240, 235, 0.06);
+    border: 1px solid rgba(160, 120, 64, 0.25);
+    border-radius: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 300;
+    color: var(--bg);
+    letter-spacing: 0.01em;
+  }
+
+  .rg-problema__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--gold);
+    animation: rgBlink 1s step-end infinite;
+  }
+
+  @keyframes rgBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .rg-problema__b {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(16px, 1.8vw, 26px);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--soft);
+    display: block;
+  }
+
+  .rg-problema__b em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  /* NEGLIGÊNCIA — Google Profile Cards */
+  .rg-neglig__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .rg-neglig__card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .rg-neglig__card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .rg-neglig__topbar {
+    height: 4px;
+  }
+
+  .rg-neglig__card--blue .rg-neglig__topbar { background: var(--gold); }
+  .rg-neglig__card--yellow .rg-neglig__topbar { background: var(--gold); }
+  .rg-neglig__card--red .rg-neglig__topbar { background: var(--gold); }
+
+  .rg-neglig__card--blue { color: var(--gold); }
+  .rg-neglig__card--yellow { color: var(--gold); }
+  .rg-neglig__card--red { color: var(--gold); }
+
+  .rg-neglig__body {
+    padding: 28px 24px;
+  }
+
+  .rg-neglig__status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .rg-neglig__pin {
+    width: 22px;
+    height: auto;
+  }
+
+  .rg-neglig__badge {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: currentColor;
+    color: #fff;
+  }
+
+  .rg-neglig__card--blue .rg-neglig__badge { background: var(--gold); color: #fff; }
+  .rg-neglig__card--yellow .rg-neglig__badge { background: var(--gold); color: #fff; }
+  .rg-neglig__card--red .rg-neglig__badge { background: var(--gold); color: #fff; }
+
+  .rg-neglig__card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: 10px;
+  }
+
+  .rg-neglig__card p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #5f6368;
+    line-height: 1.7;
+  }
+
+  .rg-neglig__alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .rg-neglig__alert svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .rg-neglig__alert strong {
+    font-weight: 600;
+  }
+
+  .rg-neglig__alert--blue,
+  .rg-neglig__alert--yellow,
+  .rg-neglig__alert--red {
+    background: rgba(160, 120, 64, 0.08);
+    color: var(--gold);
+    stroke: var(--gold);
+  }
+
+  /* Highlight animado */
+  .rg-hl {
+    background: none;
+    color: inherit;
+    position: relative;
+    display: inline;
+    padding: 1px 4px;
+    margin: 0 -4px;
+    border-radius: 3px;
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    transition: background-size 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+  }
+
+  .rg-hl--blue,
+  .rg-hl--yellow,
+  .rg-hl--red { background-image: linear-gradient(120deg, rgba(160, 120, 64, 0.18) 0%, rgba(160, 120, 64, 0.18) 100%); }
+
+  .visible .rg-hl {
+    background-size: 100% 100%;
+  }
+
+  .rg-hl--blue,
+  .rg-hl--yellow,
+  .rg-hl--red { color: var(--gold); font-weight: 400; }
+
+  .rg-neglig__frase {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* EYEBROW PIN (reutilizável) */
+  .rg-eyebrow__pin {
+    width: 16px;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
+  }
+
+  /* ENTREGA */
+  .rg-entrega__h2 {
+    margin-bottom: 48px;
+  }
+
+  .rg-entrega__setup,
+  .rg-entrega__recorrente {
+    border: 1px solid var(--bdr);
+    border-left: 3px solid var(--gold);
+    background: var(--bg);
+    padding: 40px 36px;
+    margin-bottom: 16px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .rg-entrega__setup h3,
+  .rg-entrega__recorrente h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rg-entrega__tag {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .rg-entrega__setup ul,
+  .rg-entrega__recorrente ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .rg-entrega__setup li,
+  .rg-entrega__recorrente li {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    padding: 6px 0 6px 24px;
+    position: relative;
+  }
+
+  .rg-entrega__setup li::before,
+  .rg-entrega__recorrente li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    width: 7px;
+    height: 10px;
+    background: var(--gold);
+    clip-path: path('M3.5 0C1.57 0 0 1.57 0 3.5c0 2.63 3.5 6.5 3.5 6.5S7 6.13 7 3.5C7 1.57 5.43 0 3.5 0z');
+    opacity: 0.7;
+  }
+
+  .rg-entrega__recorrente li strong {
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  /* CASE */
+  .rg-case__h2 {
+    margin-bottom: 48px;
+  }
+
+  .rg-case__body {
+    border: 1px solid var(--bdr);
+    background: var(--bg2);
+  }
+
+  .rg-case__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 48px 36px;
+    border-bottom: 1px solid var(--bdr);
+  }
+
+  .rg-case__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .rg-case__num {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 54px;
+    letter-spacing: -0.03em;
+    color: var(--mid);
+    line-height: 1;
+  }
+
+  .rg-case__num sup {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .rg-case__num--gold {
+    color: var(--gold);
+  }
+
+  .rg-case__of {
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--soft);
+  }
+
+  .rg-case__label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+  }
+
+  .rg-case__arrow {
+    display: flex;
+    align-items: center;
+  }
+
+  .rg-case__detail {
+    padding: 40px 36px;
+  }
+
+  .rg-case__detail p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .rg-case__detail p strong {
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .rg-case__detail ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+
+  .rg-case__detail li {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .rg-case__detail li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .rg-case__quote {
+    margin-top: 40px;
+    padding: 36px;
+    border-left: 3px solid var(--gold);
+    background: var(--bg2);
+  }
+
+  .rg-case__quote p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  .rg-case__quote cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.04em;
+    color: var(--soft);
+  }
+
+  .rg-case__testimonial {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+
+  .rg-case__testimonial-label {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 24px;
+  }
+
+  .rg-case__prints {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .rg-case__prints img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .rg-case__testimonial-cite {
+    display: block;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.04em;
+    color: var(--soft);
+  }
+
+  @media (max-width: 640px) {
+    .rg-case__prints {
+      gap: 14px;
+    }
+    .rg-case__prints img {
+      max-width: 100%;
+    }
+  }
+
+  /* COMO FUNCIONA */
+  .rg-como__h2 {
+    margin-bottom: 48px;
+  }
+
+  .rg-como__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--bdr);
+  }
+
+  .rg-como__step {
+    padding: 48px 32px;
+    border-right: 1px solid var(--bdr);
+    background: var(--bg);
+  }
+
+  .rg-como__step:last-child {
+    border-right: none;
+  }
+
+  .rg-como__n {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .rg-como__step h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .rg-como__step p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  /* FAQ */
+  .rg-faq__list {
+    margin-top: 32px;
+  }
+
+  .rg-faq__item {
+    border-bottom: 1px solid var(--bdr);
+  }
+
+  .rg-faq__item summary {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    padding: 20px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rg-faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .rg-faq__item summary::after {
+    content: '+';
+    font-family: 'Urbanist', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--gold);
+    transition: transform 0.3s;
+  }
+
+  .rg-faq__item[open] summary::after {
+    content: '−';
+  }
+
+  .rg-faq__item p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    padding: 0 0 20px;
+    max-width: 600px;
+  }
+
+  /* GARANTIA */
+  .rg-garantia__box {
+    text-align: center;
+    padding: 56px 40px;
+    border: 1px solid var(--bdr);
+    background: var(--bg);
+  }
+
+  .rg-garantia__badge {
+    display: inline-block;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .rg-garantia__box h3 {
+    font-size: clamp(20px, 2.5vw, 28px);
+    margin-bottom: 16px;
+  }
+
+  .rg-garantia__box p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* PREÇO */
+  .rg-preco {
+    padding: 80px 48px;
+    background: var(--dark);
+    text-align: center;
+  }
+
+  .rg-preco__inner {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .rg-preco__inner .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .rg-preco__valor {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .rg-preco__cifrao {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--soft);
+  }
+
+  .rg-preco__num {
+    font-family: 'Urbanist', sans-serif;
+    font-size: clamp(64px, 10vw, 96px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--bg);
+    line-height: 1;
+  }
+
+  .rg-preco__periodo {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--soft);
+  }
+
+  .rg-preco__detalhe {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    color: var(--soft);
+    margin-bottom: 40px;
+  }
+
+  .rg-preco__cta {
+    font-size: 0.9375rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .rg-preco__garantia {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245, 240, 235, 0.3);
+    margin-top: 16px;
+  }
+
+  /* URGÊNCIA */
+  .rg-urgencia__inner {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .rg-urgencia__h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: clamp(24px, 3.5vw, 46px);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    color: var(--dark);
+    margin-bottom: 48px;
+  }
+
+  .rg-urgencia__h2 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .rg-urgencia__cta {
+    font-size: 0.9375rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .rg-urgencia__vagas {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--soft);
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  /* HERO CTA2 (ghost button) */
+  .rg-hero__cta2 {
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 0;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--soft);
+    border: 1px solid rgba(245, 240, 235, 0.2);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+    opacity: 0;
+    animation: rgUp 0.6s ease 0.85s forwards;
+  }
+
+  .rg-hero__cta2:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* MOCK CARD */
+  .rg-mock__card {
+    width: 100%;
+    max-width: 380px;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(160, 120, 64, 0.15);
+  }
+
+  .rg-mock__header {
+    padding: 12px 16px;
+    background: #fff;
+    border-bottom: 1px solid #e8eaed;
+  }
+
+  .rg-mock__searchbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f3f4;
+    border-radius: 24px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #5f6368;
+  }
+
+  .rg-mock__results {
+    padding: 4px 0;
+  }
+
+  .rg-mock__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f1f3f4;
+  }
+
+  .rg-mock__item:last-child {
+    border-bottom: none;
+  }
+
+  .rg-mock__rank {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e8eaed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5f6368;
+    margin-top: 2px;
+  }
+
+  .rg-mock__rank--you {
+    width: 34px;
+    height: 34px;
+    background: #e8eaed;
+    color: #5f6368;
+    font-size: 12px;
+    animation: rgPulse 2.5s ease-in-out 1.5s infinite;
+  }
+
+  .rg-mock__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rg-mock__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #202124;
+  }
+
+  .rg-mock__name--you {
+    color: #202124;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .rg-mock__stars {
+    font-size: 13px;
+    color: #fbbc04;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .rg-mock__stars--empty {
+    color: #dadce0;
+  }
+
+  .rg-mock__count {
+    font-size: 12px;
+    color: #9aa0a6;
+    margin-left: 2px;
+  }
+
+  .rg-mock__detail {
+    font-size: 12px;
+    color: #70757a;
+    font-weight: 300;
+  }
+
+  .rg-mock__detail--warn {
+    color: #ea4335;
+    font-weight: 500;
+  }
+
+  .rg-mock__star--dim {
+    color: #fbbc04;
+    opacity: 0.45;
+  }
+
+  .rg-mock__item--you {
+    background: #fff;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* SKIP — "muitas clínicas na frente" */
+  .rg-mock__skip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 14px 16px;
+    font-size: 12px;
+    background: #f8f8f8;
+    color: #9aa0a6;
+    border-bottom: 1px solid #f1f3f4;
+  }
+
+  .rg-mock__skip span {
+    color: #dadce0;
+  }
+
+  .rg-mock__skip-txt {
+    color: #202124;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .rg-mock__caption {
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #ea4335;
+    background: #fef7f6;
+    border-top: 1px solid #fce8e6;
+    max-width: 100%;
+  }
+
+  /* ÍCONES DOURADO PADRÃO */
+  .rg-neglig__icon--blue,
+  .rg-neglig__icon--yellow,
+  .rg-neglig__icon--red {
+    color: var(--gold);
+    border-color: rgba(160, 120, 64, 0.3);
+  }
+
+  /* SOCIAL PROOF BAR — Google metrics style */
+  .rg-proof {
+    background: var(--bg2);
+    border-top: 1px solid var(--bdr);
+    border-bottom: 1px solid var(--bdr);
+    padding: 36px 48px;
+  }
+
+  .rg-proof__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+  }
+
+  .rg-proof__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rg-proof__icon {
+    flex-shrink: 0;
+  }
+
+  .rg-proof__num {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .rg-proof__of {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--soft);
+  }
+
+  .rg-proof__label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.4;
+    max-width: 120px;
+  }
+
+  .rg-proof__sep {
+    width: 1px;
+    height: 36px;
+    background: var(--bdr);
+  }
+
+  /* PREÇO COMPARATIVO */
+  .rg-preco__comparativo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245, 240, 235, 0.25);
+    margin-top: 20px;
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* DIAGNÓSTICO GRATUITO */
+  .rg-diagnostico {
+    background: var(--bg2);
+  }
+
+  .rg-diagnostico__box {
+    text-align: center;
+    padding: 64px 40px;
+    border: 2px solid var(--gold);
+    background: var(--bg);
+    border-radius: 8px;
+  }
+
+  .rg-diagnostico__h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 36px);
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  .rg-diagnostico__sub {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    margin: 0 auto 32px;
+  }
+
+  .rg-diagnostico__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .rg-diagnostico__input {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--dark);
+    background: rgba(245, 240, 235, 0.95);
+    border: 1px solid rgba(160, 120, 64, 0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .rg-diagnostico__input:focus {
+    border-color: var(--gold);
+    background: #fff;
+  }
+
+  .rg-diagnostico__input::placeholder {
+    color: var(--soft);
+    font-weight: 300;
+  }
+
+  .rg-diagnostico__cta {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .rg-diagnostico__ok {
+    padding: 20px 0 0;
+  }
+
+  .rg-diagnostico__ok p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    margin-top: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .rg-diagnostico__form {
+      flex-direction: column;
+    }
+
+    .rg-diagnostico__input {
+      width: 100%;
+    }
+
+    .rg-diagnostico__cta {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .rg-diagnostico__box {
+      padding: 48px 24px;
+    }
+  }
+
+  /* AUDITORIA GRÁTIS */
+  .rg-auditoria__box {
+    text-align: center;
+    padding: 64px 40px;
+    border: 2px solid var(--gold);
+    background: var(--bg);
+  }
+
+  .rg-auditoria__h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 36px);
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .rg-auditoria__sub {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+
+  .rg-auditoria__cta {
+    font-size: 0.9375rem;
+    padding: 1rem 2.5rem;
+  }
+
+  /* CTA INTERMEDIÁRIOS */
+  .rg-cta-mid {
+    padding: 56px 24px;
+    text-align: center;
+    background: var(--dark);
+  }
+
+  .btn--gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    background: var(--gold);
+    color: #fff;
+    transition: all 0.3s var(--ease);
+    box-shadow: none;
+  }
+
+  .btn--gold:hover {
+    background: var(--goldL);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(160, 120, 64, 0.25);
+  }
+
+  .rg-cta-mid__badge {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 235, 0.4);
+  }
+
+  /* WHATSAPP FLUTUANTE */
+  .rg-wafloat {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 900;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--wa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: rgFloat 2s ease-in-out infinite;
+  }
+
+  .rg-wafloat:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+  }
+
+  /* BARRA FIXA MOBILE */
+  .rg-stickybar {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .rg-stickybar {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 800;
+      padding: 12px 16px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+      background: var(--dark);
+      border-top: 1px solid rgba(160, 120, 64, 0.3);
+      text-align: center;
+    }
+
+    .rg-stickybar__btn {
+      display: block;
+      width: 100%;
+      font-family: 'Urbanist', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 14px 24px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(160, 120, 64, 0.35);
+      text-align: center;
+    }
+
+    .rg-wafloat {
+      bottom: 80px;
+    }
+
+    /* Padding no footer pra não sobrepor */
+    footer {
+      padding-bottom: 72px;
+    }
+  }
+
+  /* EXIT POPUP */
+  .rg-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .rg-popup.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .rg-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 24, 20, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .rg-popup__box {
+    position: relative;
+    background: var(--dark);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 0 0 rgba(160, 120, 64, 0), 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.4s var(--ease);
+  }
+
+  .rg-popup.active .rg-popup__box {
+    transform: translateY(0);
+    animation: rgPopupGlow 2s ease-in-out 0.5s infinite;
+  }
+
+  @keyframes rgPopupGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(160, 120, 64, 0), 0 20px 60px rgba(0, 0, 0, 0.4); }
+    50% { box-shadow: 0 0 0 16px rgba(160, 120, 64, 0.3), 0 20px 60px rgba(0, 0, 0, 0.4); }
+  }
+
+  .rg-popup.active .rg-popup__box {
+    animation-duration: 1.2s;
+  }
+
+  .rg-popup__close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #3a3632;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .rg-popup__close:hover {
+    color: var(--soft);
+  }
+
+  .rg-popup__pin {
+    width: 48px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(160, 120, 64, 0.5));
+    animation: rgPinDrop 0.5s ease 0.3s both;
+  }
+
+  .rg-popup__headline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .rg-popup__warn {
+    flex-shrink: 0;
+  }
+
+  .rg-popup__h3 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    line-height: 1.2;
+  }
+
+  .rg-popup__benefit {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--soft);
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .rg-popup__gratis {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  .rg-popup__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .rg-popup__input {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--dark);
+    background: rgba(245, 240, 235, 0.95);
+    border: 1px solid rgba(160, 120, 64, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .rg-popup__input:focus {
+    border-color: var(--gold);
+    background: #fff;
+  }
+
+  .rg-popup__input::placeholder {
+    color: var(--soft);
+    font-weight: 300;
+  }
+
+  .rg-popup__cta {
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1.1rem 3rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    width: 100%;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--dark);
+    box-shadow: 0 4px 20px rgba(245, 240, 235, 0.15);
+  }
+
+  .rg-popup__cta:hover {
+    background: #fff;
+    color: var(--dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(245, 240, 235, 0.25);
+  }
+
+  .rg-popup__skip {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245, 240, 235, 0.3);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .rg-popup__skip:hover {
+    color: var(--soft);
+  }
+
+  @media (max-width: 560px) {
+    .rg-popup__box {
+      padding: 36px 24px;
+    }
+
+    .rg-popup__h3 {
+      font-size: 20px;
+    }
+
+    .rg-popup__pin {
+      width: 40px;
+    }
+  }
+
+  /* ANIMAÇÕES */
+  @keyframes rgUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rgPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(160, 120, 64, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(160, 120, 64, 0); }
+  }
+
+  @keyframes rgPinDrop {
+    0% { transform: translateY(-20px) scale(0.7); opacity: 0; }
+    60% { transform: translateY(3px) scale(1.05); opacity: 1; }
+    80% { transform: translateY(-2px) scale(0.98); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  @keyframes rgFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .rg-hero__inner {
+      padding: 60px 24px;
+    }
+
+    .rg-problema {
+      padding: 64px 24px;
+    }
+
+    .rg-neglig__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rg-como__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rg-como__step {
+      border-right: none;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .rg-como__step:last-child {
+      border-bottom: none;
+    }
+
+    .rg-case__stats {
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .rg-hero__layout {
+      grid-template-columns: 1fr;
+      padding: 0 24px;
+      min-height: auto;
+    }
+
+    .rg-hero__inner {
+      padding: 48px 0 24px;
+    }
+
+    .rg-hero__mock {
+      padding: 0 0 48px;
+    }
+
+    .rg-mock__card {
+      max-width: 100%;
+    }
+
+    .rg-proof {
+      padding: 28px 20px;
+    }
+
+    .rg-proof__inner {
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .rg-proof__sep {
+      display: none;
+    }
+
+    .rg-proof__num {
+      font-size: 28px;
+    }
+
+    .rg-preco {
+      padding: 80px 24px;
+    }
+
+    .rg-auditoria__box {
+      padding: 48px 24px;
+    }
+
+    .rg-entrega__setup,
+    .rg-entrega__recorrente {
+      padding: 32px 24px;
+    }
+
+    .rg-case__detail {
+      padding: 32px 24px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .rg-hero__h1 {
+      font-size: 30px;
+    }
+
+    .rg-problema__a {
+      font-size: 22px;
+    }
+
+    .rg-case__stats {
+      gap: 16px;
+    }
+
+    .rg-case__num {
+      font-size: 40px;
+    }
+
+    .rg-case__arrow {
+      display: none;
+    }
+
+    .rg-urgencia__h2 {
+      font-size: 22px;
+    }
+
+    .rg-preco__num {
+      font-size: 56px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const STORAGE_KEY = 'rg_popup_shown';
+
+    const popup = document.getElementById('exitPopup');
+    const overlay = document.getElementById('exitOverlay');
+    const closeBtn = document.getElementById('exitClose');
+    const skipBtn = document.getElementById('exitSkip');
+    if (!popup) return;
+
+    let shown = false;
+
+    function show() {
+      if (shown) return;
+      shown = true;
+      popup.classList.add('active');
+      popup.setAttribute('aria-hidden', 'false');
+      sessionStorage.setItem(STORAGE_KEY, '1');
+    }
+
+    function hide() {
+      popup.classList.remove('active');
+      popup.setAttribute('aria-hidden', 'true');
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
+    {
+
+      // Desktop: mouse sai pela parte de cima
+      document.addEventListener('mouseout', function(e) {
+        if (e.clientY < 5 && !e.relatedTarget && !e.toElement) {
+          show();
+        }
+      });
+
+      // Mobile: scroll reverso + tempo mínimo
+      var isMobile = 'ontouchstart' in window || window.innerWidth < 768;
+      if (isMobile) {
+        var lastY = 0;
+        var upCount = 0;
+        var minTime = Date.now() + 15000; // 15s mínimo na página
+        var minDepth = false;
+
+        // Marca quando passou de 30% da página
+        window.addEventListener('scroll', function() {
+          var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+          if (pct > 0.3) minDepth = true;
+        }, { passive: true });
+
+        // Detecta scroll reverso (subindo)
+        window.addEventListener('scroll', function() {
+          var y = window.scrollY;
+          if (y < lastY) {
+            upCount++;
+          } else {
+            upCount = 0;
+          }
+          lastY = y;
+
+          // Dispara: já passou 30%, já ficou 15s, e scrollou pra cima 3+ vezes seguidas
+          if (minDepth && Date.now() > minTime && upCount >= 3) {
+            show();
+          }
+        }, { passive: true });
+
+        // Fallback: 30s + 40% de scroll (se não scrollou pra cima)
+        setTimeout(function() {
+          var check = function() {
+            var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            if (pct > 0.4) {
+              show();
+            } else {
+              window.addEventListener('scroll', function onFallback() {
+                var p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+                if (p > 0.4) {
+                  show();
+                  window.removeEventListener('scroll', onFallback);
+                }
+              }, { passive: true });
+            }
+          };
+          check();
+        }, 30000);
+      }
+    }
+
+    closeBtn.addEventListener('click', hide);
+    skipBtn.addEventListener('click', hide);
+
+    // Popup 1 → Popup 2
+    var exitCta = document.getElementById('exitCta');
+    var formPopup = document.getElementById('formPopup');
+    var formOverlay = document.getElementById('formOverlay');
+    var formClose = document.getElementById('formClose');
+
+    function showForm() {
+      hide();
+      setTimeout(function() {
+        formPopup.classList.add('active');
+        formPopup.setAttribute('aria-hidden', 'false');
+      }, 300);
+    }
+
+    function hideForm() {
+      formPopup.classList.remove('active');
+      formPopup.setAttribute('aria-hidden', 'true');
+    }
+
+    if (exitCta) exitCta.addEventListener('click', showForm);
+    // overlay não fecha — só X e botões
+    if (formClose) formClose.addEventListener('click', hideForm);
+
+    // Form submit
+    var form = document.getElementById('exitForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = {
+          nome: form.nome.value,
+          whatsapp: form.whatsapp.value,
+          email: form.email.value,
+          timestamp: new Date().toISOString(),
+          source: 'exit_popup'
+        };
+
+        var leads = JSON.parse(localStorage.getItem('rg_leads') || '[]');
+        leads.push(data);
+        localStorage.setItem('rg_leads', JSON.stringify(leads));
+
+        // Enviar pra Cloudflare Worker
+        fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.nome,
+            email: data.email,
+            phone: data.whatsapp,
+            source: 'resgate-google-popup',
+            page: window.location.href
+          })
+        }).catch(function() {});
+
+        var box = formPopup.querySelector('.rg-popup__box');
+        box.innerHTML = '<div style="padding:20px 0;text-align:center;">' +
+          '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<h3 style="font-family:Urbanist,sans-serif;font-size:22px;font-weight:800;color:var(--dark);margin:20px 0 8px;">Recebido!</h3>' +
+          '<p style="font-family:Outfit,sans-serif;font-size:15px;color:var(--mid);font-weight:300;">Vamos analisar seu perfil e te chamar no WhatsApp.</p>' +
+          '</div>';
+        setTimeout(hideForm, 3000);
+      });
+    }
+  })();
+</script>
+
+<script>
+  // Diagnosis form handler
+  (function() {
+    var diagForm = document.getElementById('diagForm');
+    var diagOk = document.getElementById('diagOk');
+    if (!diagForm) return;
+
+    diagForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var whatsapp = diagForm.whatsapp.value;
+
+      // Fire Meta Pixel Lead event
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Resgate seu Google - Diagnostico',
+          content_category: 'GMN'
+        });
+      }
+
+      // POST to CF Worker
+      fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: whatsapp,
+          source: 'resgate-google-diagnostico',
+          page: window.location.href,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(function() {});
+
+      // Save locally
+      var leads = JSON.parse(localStorage.getItem('rg_leads') || '[]');
+      leads.push({ whatsapp: whatsapp, source: 'diagnostico', timestamp: new Date().toISOString() });
+      localStorage.setItem('rg_leads', JSON.stringify(leads));
+
+      // Show confirmation
+      diagForm.style.display = 'none';
+      diagOk.style.display = 'block';
+    });
+  })();
+</script>
+
+<script is:inline>
+  // Meta Pixel — track checkout clicks
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="pay.hotmart.com"]');
+    if (link && typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Resgate seu Google',
+        content_category: 'GMN',
+        value: 197.00,
+        currency: 'BRL'
+      });
+    }
+  });
+  // Track lead capture popup submission
+  document.addEventListener('submit', function(e) {
+    if (e.target.closest('.rg-popup__form') && typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Resgate seu Google - Popup',
+        content_category: 'GMN'
+      });
+    }
+  }, true);
+
+  // === INTELIGÊNCIA DE COMPORTAMENTO ===
+  (function() {
+    var maxScroll = 0;
+    var scrollMilestones = {25: false, 50: false, 75: false, 100: false};
+    var startTime = Date.now();
+    var engaged = false;
+
+    // Scroll depth tracking
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = Math.round((scrollTop / docHeight) * 100);
+      if (pct > maxScroll) maxScroll = pct;
+
+      for (var milestone in scrollMilestones) {
+        if (!scrollMilestones[milestone] && pct >= parseInt(milestone)) {
+          scrollMilestones[milestone] = true;
+          if (typeof gtag === 'function') {
+            gtag('event', 'scroll_depth', { percent: milestone, page: 'resgate-google' });
+          }
+          if (parseInt(milestone) >= 75 && typeof fbq === 'function' && !engaged) {
+            fbq('trackCustom', 'HighEngagement', { scroll: milestone, time_on_page: Math.round((Date.now() - startTime) / 1000) });
+            engaged = true;
+          }
+        }
+      }
+    });
+
+    // Time on page tracking (30s, 60s, 120s)
+    var timeMarkers = [30, 60, 120];
+    timeMarkers.forEach(function(sec) {
+      setTimeout(function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'time_on_page', { seconds: sec, page: 'resgate-google' });
+        }
+      }, sec * 1000);
+    });
+
+    // Track which sections are viewed (Intersection Observer)
+    if ('IntersectionObserver' in window) {
+      var sections = document.querySelectorAll('section[class*="rg-"]');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var name = entry.target.className.match(/rg-[\w-]+/);
+            if (name && typeof gtag === 'function') {
+              gtag('event', 'section_view', { section: name[0], page: 'resgate-google' });
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      sections.forEach(function(s) { observer.observe(s); });
+    }
+
+    // Track exit intent (mouse leaves viewport)
+    document.addEventListener('mouseout', function(e) {
+      if (e.clientY < 5 && typeof gtag === 'function') {
+        gtag('event', 'exit_intent', { scroll_depth: maxScroll, time: Math.round((Date.now() - startTime) / 1000) });
+        document.removeEventListener('mouseout', arguments.callee);
+      }
+    });
+  })();
+</script>
