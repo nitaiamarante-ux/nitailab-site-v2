@@ -48,7 +48,7 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
     "url": siteUrl,
     "logo": siteUrl + "/images/logo.svg",
     "description": "Agência de marketing digital exclusiva para clínicas de estética em São Paulo. Combinamos inteligência artificial, dados e estratégia para transformar a presença digital de clínicas que querem atrair mais pacientes qualificados.",
-    "telephone": "+55-11-5286-5757",
+    "telephone": "+55-31-98297-6006",
     "email": "comercial@nitailab.com.br",
     "founder": {
       "@type": "Person",
@@ -58,7 +58,7 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+55-11-5286-5757",
+      "telephone": "+55-31-98297-6006",
       "contactType": "commercial",
       "email": "comercial@nitailab.com.br",
       "availableLanguage": "Portuguese"
@@ -110,8 +110,17 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
     ]
   })} />
 
+  <!-- Modo dono (Nitai) — nunca carrega GA4/Meta/Clarity neste navegador.
+       Marcado pela página /eu-37ja0k92rj (mesma lógica das propostas). -->
+  <script is:inline>
+    window.__nlOwner = (function(){
+      try { return localStorage.getItem('nl_owner') === '1'; } catch(e) { return false; }
+    })();
+  </script>
+
   <!-- Meta Pixel Code -->
   <script is:inline>
+  if (!window.__nlOwner) {
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -122,6 +131,7 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1266943654987197');
   fbq('track', 'PageView');
+  }
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1266943654987197&ev=PageView&noscript=1"
@@ -130,20 +140,46 @@ const currentUrl = `${siteUrl}${Astro.url.pathname}`;
 
   <!-- Microsoft Clarity — Mapa de calor, gravação de sessão, scroll -->
   <script is:inline>
+  if (!window.__nlOwner) {
   (function(c,l,a,r,i,t,y){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
   })(window,document,"clarity","script","w78jx5irys");
+  }
   </script>
 
   <!-- Google Analytics 4 -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-BMPXYBHH87"></script>
   <script is:inline>
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());
-  gtag('config','G-BMPXYBHH87');
+  if (!window.__nlOwner) {
+    var __ga4 = document.createElement('script');
+    __ga4.async = true;
+    __ga4.src = 'https://www.googletagmanager.com/gtag/js?id=G-BMPXYBHH87';
+    document.head.appendChild(__ga4);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'G-BMPXYBHH87');
+  }
+  </script>
+
+  <!-- Selo discreto "modo Nitai" (mesmo padrão das propostas) — só aparece
+       quando o navegador está marcado como dono; some na impressão. -->
+  <script is:inline>
+  if (window.__nlOwner) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var badge = document.createElement('div');
+      badge.textContent = 'modo Nitai — esta visita não conta';
+      badge.setAttribute('data-nl-owner-badge', '1');
+      badge.style.cssText = 'position:fixed;bottom:6px;right:6px;z-index:9999;'
+        + 'background:rgba(0,0,0,.55);color:#ccc;font:10px/1.4 sans-serif;'
+        + 'padding:3px 8px;border-radius:4px;pointer-events:none;';
+      document.body.appendChild(badge);
+    });
+    var __nlOwnerPrintCss = document.createElement('style');
+    __nlOwnerPrintCss.textContent = '@media print{[data-nl-owner-badge]{display:none!important}}';
+    document.head.appendChild(__nlOwnerPrintCss);
+  }
   </script>
 </head>
 <body>
