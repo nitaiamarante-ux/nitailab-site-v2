@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import LpOrigemTracking from '../components/LpOrigemTracking.astro';
+import LpLeadForms from '../components/LpLeadForms.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
 ---
@@ -395,12 +397,15 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
         <h2 class="rg-diagnostico__h2">Quer saber como está o Google da sua clínica?</h2>
         <p class="rg-diagnostico__sub">Diagnóstico gratuito de 30 pontos. Sem compromisso.</p>
         <form class="rg-diagnostico__form" id="diagForm">
+          <input type="text" name="negocio" placeholder="Nome do seu negócio" required class="rg-diagnostico__input" />
+          <input type="text" name="cidade" placeholder="Cidade" required class="rg-diagnostico__input" />
           <input type="tel" name="whatsapp" placeholder="DDD + número" required class="rg-diagnostico__input" />
           <button type="submit" class="btn btn--gold rg-diagnostico__cta">Quero meu diagnóstico</button>
         </form>
         <div class="rg-diagnostico__ok" id="diagOk" style="display:none;">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <p>Recebido. Vamos analisar seu perfil e te chamar no WhatsApp.</p>
+          <p id="diagOkMsg">Abrindo seu WhatsApp… é só apertar enviar.</p>
+          <a href="#" id="diagOkWaBtn" class="btn btn--gold rg-diagnostico__wabtn" data-wa-pos="diagform-ok" data-wa-no-rewrite="1" style="display:none;margin-top:12px;">Abrir WhatsApp</a>
         </div>
       </div>
     </div>
@@ -464,6 +469,8 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       <h3 class="rg-popup__h3">Onde a gente te manda o diagnóstico?</h3>
       <form class="rg-popup__form" id="exitForm">
         <input type="text" name="nome" placeholder="Seu nome" required class="rg-popup__input" />
+        <input type="text" name="negocio" placeholder="Nome do seu negócio" required class="rg-popup__input" />
+        <input type="text" name="cidade" placeholder="Cidade" required class="rg-popup__input" />
         <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required class="rg-popup__input" />
         <input type="email" name="email" placeholder="Seu melhor email" required class="rg-popup__input" />
         <button type="submit" class="btn btn--gold rg-popup__cta">Enviar</button>
@@ -2320,90 +2327,12 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
     // overlay não fecha — só X e botões
     if (formClose) formClose.addEventListener('click', hideForm);
 
-    // Form submit
-    var form = document.getElementById('exitForm');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var data = {
-          nome: form.nome.value,
-          whatsapp: form.whatsapp.value,
-          email: form.email.value,
-          timestamp: new Date().toISOString(),
-          source: 'exit_popup'
-        };
-
-        var leads = JSON.parse(localStorage.getItem('rg_leads') || '[]');
-        leads.push(data);
-        localStorage.setItem('rg_leads', JSON.stringify(leads));
-
-        // Enviar pra Cloudflare Worker
-        fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: data.nome,
-            email: data.email,
-            phone: data.whatsapp,
-            source: 'resgate-google-popup',
-            page: window.location.href
-          })
-        }).catch(function() {});
-
-        var box = formPopup.querySelector('.rg-popup__box');
-        box.innerHTML = '<div style="padding:20px 0;text-align:center;">' +
-          '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-          '<h3 style="font-family:Urbanist,sans-serif;font-size:22px;font-weight:800;color:var(--dark);margin:20px 0 8px;">Recebido!</h3>' +
-          '<p style="font-family:Outfit,sans-serif;font-size:15px;color:var(--mid);font-weight:300;">Vamos analisar seu perfil e te chamar no WhatsApp.</p>' +
-          '</div>';
-        setTimeout(hideForm, 3000);
-      });
-    }
+    // Form submit — tratado pelo script único de leads (diagForm/exitForm) abaixo
   })();
 </script>
 
-<script>
-  // Diagnosis form handler
-  (function() {
-    var diagForm = document.getElementById('diagForm');
-    var diagOk = document.getElementById('diagOk');
-    if (!diagForm) return;
-
-    diagForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var whatsapp = diagForm.whatsapp.value;
-
-      // Fire Meta Pixel Lead event
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: 'Resgate seu Google - Diagnostico',
-          content_category: 'GMN'
-        });
-      }
-
-      // POST to CF Worker
-      fetch('https://nitailab-hub.nitailab.workers.dev/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone: whatsapp,
-          source: 'resgate-google-diagnostico',
-          page: window.location.href,
-          timestamp: new Date().toISOString()
-        })
-      }).catch(function() {});
-
-      // Save locally
-      var leads = JSON.parse(localStorage.getItem('rg_leads') || '[]');
-      leads.push({ whatsapp: whatsapp, source: 'diagnostico', timestamp: new Date().toISOString() });
-      localStorage.setItem('rg_leads', JSON.stringify(leads));
-
-      // Show confirmation
-      diagForm.style.display = 'none';
-      diagOk.style.display = 'block';
-    });
-  })();
-</script>
+<LpOrigemTracking />
+<LpLeadForms />
 
 <script is:inline>
   // Meta Pixel — track checkout clicks
@@ -2418,15 +2347,9 @@ const checkoutUrl = 'https://pay.hotmart.com/A105178336D';
       });
     }
   });
-  // Track lead capture popup submission
-  document.addEventListener('submit', function(e) {
-    if (e.target.closest('.rg-popup__form') && typeof fbq === 'function') {
-      fbq('track', 'Lead', {
-        content_name: 'Resgate seu Google - Popup',
-        content_category: 'GMN'
-      });
-    }
-  }, true);
+  // Lead do popup/diagnóstico (fbq Lead + gtag generate_lead) já disparado
+  // pelo LpLeadForms (window.location.href só depois do fetch resolver) —
+  // não duplicar aqui.
 
   // === INTELIGÊNCIA DE COMPORTAMENTO ===
   (function() {

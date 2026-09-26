@@ -1,0 +1,110 @@
+---
+// Rastreio de origem (UTM/fbclid/gclid) + clique em link wa.me.
+// Extraído de src/pages/index.astro (commit ab3f3e7, 26/09/2026) pra
+// reaproveitar em qualquer LP com CTA de WhatsApp — não duplicar a lógica.
+// Depende só de existir algum <a href="...wa.me/...">; expõe window.__rgOrigin
+// (usado por LpLeadForms.astro pra montar o link com origem + id do lead).
+---
+<script is:inline>
+  // === ORIGEM (UTM/fbclid/gclid) + rastreio de clique no WhatsApp ===
+  // Lê a origem 1x (na carga) e guarda em sessionStorage — sobrevive à
+  // navegação dentro da mesma sessão. Todo clique em link wa.me ganha uma
+  // linha discreta de origem no texto pré-preenchido, dispara Contact/
+  // whatsapp_click e manda um evento leve (sem alerta) pro nl-tracker.
+  (function () {
+    var NL_EVENT_ENDPOINT = 'https://nl-tracker.nitai-amarante.workers.dev/event';
+
+    function paramsDaUrl() {
+      try { return new URLSearchParams(window.location.search); } catch (e) { return null; }
+    }
+
+    function capturarOrigem() {
+      var p = paramsDaUrl();
+      if (!p) return;
+      var origem = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+        var v = p.get(k);
+        if (v) origem[k] = v;
+      });
+      if (p.get('fbclid')) origem.fbclid = '1';
+      if (p.get('gclid')) origem.gclid = '1';
+      if (Object.keys(origem).length) {
+        try { sessionStorage.setItem('rg_origin', JSON.stringify(origem)); } catch (e) {}
+      }
+    }
+    capturarOrigem();
+
+    function getOrigem() {
+      try { return JSON.parse(sessionStorage.getItem('rg_origin') || '{}'); } catch (e) { return {}; }
+    }
+
+    // Rótulo curto pro texto do WhatsApp — nunca expõe fbclid/gclid inteiro
+    function rotuloOrigem(o) {
+      if (o.utm_source && o.utm_campaign) return o.utm_source + '/' + o.utm_campaign;
+      if (o.utm_source) return o.utm_source;
+      if (o.gclid) return 'google';
+      if (o.fbclid) return 'meta';
+      return null;
+    }
+
+    // Origem resumida pra eventos (gtag/fbq/tracker) — sem PII
+    function origemParaEvento(o) {
+      return {
+        utm_source: o.utm_source || null,
+        utm_medium: o.utm_medium || null,
+        utm_campaign: o.utm_campaign || null,
+        utm_content: o.utm_content || null,
+        tem_fbclid: !!o.fbclid,
+        tem_gclid: !!o.gclid,
+      };
+    }
+
+    function ehDono() {
+      try { return localStorage.getItem('nl_owner') === '1'; } catch (e) { return false; }
+    }
+
+    window.__rgOrigin = { get: getOrigem, rotulo: rotuloOrigem, evento: origemParaEvento, ehDono: ehDono, endpoint: NL_EVENT_ENDPOINT };
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href*="wa.me/"]');
+      if (!a) return;
+
+      var o = getOrigem();
+      var rot = rotuloOrigem(o);
+
+      // Anexa (ou substitui) a linha de origem no texto pré-preenchido —
+      // pulado nos botões "Abrir WhatsApp" pós-lead, que já montam o texto
+      // completo (com ref + id do lead) na hora do envio do formulário.
+      if (a.getAttribute('data-wa-no-rewrite') !== '1') {
+        try {
+          var u = new URL(a.href);
+          var texto = (u.searchParams.get('text') || '').replace(/\s*\(ref:[^)]*\)\s*$/, '');
+          if (rot) texto += ' (ref: ' + rot + ')';
+          u.searchParams.set('text', texto);
+          a.href = u.toString();
+        } catch (err) {}
+      }
+
+      var posicao = a.getAttribute('data-wa-pos') || a.id || (a.textContent || '').trim().slice(0, 40) || 'link';
+      var evOrigem = origemParaEvento(o);
+      var dono = ehDono();
+
+      if (!dono && typeof fbq === 'function') {
+        fbq('track', 'Contact', Object.assign({content_name: 'Resgate seu Google', posicao: posicao}, evOrigem));
+      }
+      if (!dono && typeof gtag === 'function') {
+        gtag('event', 'whatsapp_click', Object.assign({posicao: posicao}, evOrigem));
+      }
+
+      // POST não-bloqueante — nunca atrasa a navegação pro WhatsApp
+      try {
+        var payload = JSON.stringify({tipo: 'wa_click', posicao: posicao, origem: evOrigem, page: window.location.href, teste: dono});
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(NL_EVENT_ENDPOINT, new Blob([payload], {type: 'application/json'}));
+        } else {
+          fetch(NL_EVENT_ENDPOINT, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: payload, keepalive: true}).catch(function () {});
+        }
+      } catch (err) {}
+    }, true);
+  })();
+</script>

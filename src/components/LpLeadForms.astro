@@ -1,0 +1,112 @@
+---
+// Formulários de lead (#diagForm / #exitForm) → POST /lead no nl-tracker e,
+// ok ou erro, abre o WhatsApp com a mensagem pronta + origem + (#id do lead).
+// Extraído de src/pages/index.astro (commit ab3f3e7, 26/09/2026) pra
+// reaproveitar em qualquer LP — não duplicar a lógica de captura de lead.
+// Depende de LpOrigemTracking.astro estar presente na mesma página (usa
+// window.__rgOrigin) e de cada formulário ter os campos negocio/cidade/
+// whatsapp (nome/email opcionais). Sucesso do diagForm espera os ids
+// diagOk / diagOkMsg / diagOkWaBtn na página (ver index.astro).
+---
+<script is:inline>
+  // === FORMULÁRIOS (diagForm/exitForm) → POST /lead + abre o WhatsApp ===
+  // O objetivo do lead é abrir a conversa de venda no WhatsApp. O POST pro
+  // nl-tracker não pode travar isso: ok ou erro, o formulário segue pro
+  // WhatsApp — o lead não pode se perder (ordem do Nitai, 26/09).
+  (function () {
+    var NL_LEAD_ENDPOINT = 'https://nl-tracker.nitai-amarante.workers.dev/lead';
+    var WA_NUMERO = '5531982976006';
+
+    function origemAtual() {
+      var o = (window.__rgOrigin && window.__rgOrigin.get()) || {};
+      return (window.__rgOrigin && window.__rgOrigin.evento(o)) || {};
+    }
+    function rotuloAtual() {
+      var o = (window.__rgOrigin && window.__rgOrigin.get()) || {};
+      return window.__rgOrigin ? window.__rgOrigin.rotulo(o) : null;
+    }
+    function ehDono() {
+      return !!(window.__rgOrigin && window.__rgOrigin.ehDono());
+    }
+
+    function montarLinkWa(negocio, cidade, idCurto) {
+      var texto = 'Oi! Sou da ' + negocio + ', em ' + cidade + '. Quero meu raio-X grátis.';
+      var rot = rotuloAtual();
+      if (rot) texto += ' (ref: ' + rot + ')';
+      if (idCurto) texto += ' (#' + idCurto + ')';
+      return 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(texto);
+    }
+
+    function dispararLead(nomeForm) {
+      if (ehDono()) return;
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', {form: nomeForm});
+    }
+
+    function ligar(formId, aoAbrirWhatsapp) {
+      var form = document.getElementById(formId);
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var negocio = ((form.negocio && form.negocio.value) || '').trim();
+        var cidade = ((form.cidade && form.cidade.value) || '').trim();
+        var whatsapp = ((form.whatsapp && form.whatsapp.value) || '').trim();
+        var nome = ((form.nome && form.nome.value) || '').trim();
+        var email = ((form.email && form.email.value) || '').trim();
+
+        var payload = {
+          negocio: negocio, cidade: cidade, whatsapp: whatsapp,
+          nome: nome || null, email: email || null,
+          form: formId, origem: origemAtual(), page: window.location.href,
+          teste: ehDono(),
+        };
+
+        function seguirPraWhatsapp(idCurto) {
+          dispararLead(formId);
+          var waHref = montarLinkWa(negocio, cidade, idCurto);
+          if (aoAbrirWhatsapp) aoAbrirWhatsapp(waHref);
+          window.location.href = waHref;
+        }
+
+        fetch(NL_LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload),
+        }).then(function (res) {
+          if (!res.ok) throw new Error('lead recusado (' + res.status + ')');
+          return res.json();
+        }).then(function (data) {
+          seguirPraWhatsapp(data && data.id);
+        }).catch(function () {
+          // O lead não pode se perder: segue pro WhatsApp mesmo sem confirmar o POST
+          seguirPraWhatsapp(null);
+        });
+      });
+    }
+
+    ligar('diagForm', function (waHref) {
+      var diagForm = document.getElementById('diagForm');
+      var diagOk = document.getElementById('diagOk');
+      var diagOkWaBtn = document.getElementById('diagOkWaBtn');
+      if (diagForm) diagForm.style.display = 'none';
+      if (diagOk) diagOk.style.display = 'block';
+      if (diagOkWaBtn) { diagOkWaBtn.href = waHref; diagOkWaBtn.style.display = 'inline-block'; }
+    });
+
+    ligar('exitForm', function (waHref) {
+      var formPopup = document.getElementById('formPopup');
+      if (!formPopup) return;
+      var box = formPopup.querySelector('.rg-popup__box');
+      if (box) {
+        box.innerHTML = '<div style="padding:20px 0;text-align:center;">' +
+          '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<h3 style="font-family:Urbanist,sans-serif;font-size:22px;font-weight:800;color:var(--dark);margin:20px 0 8px;">Abrindo seu WhatsApp…</h3>' +
+          '<p style="font-family:Outfit,sans-serif;font-size:15px;color:var(--mid);font-weight:300;">É só apertar enviar.</p>' +
+          '<a href="' + waHref + '" data-wa-no-rewrite="1" data-wa-pos="exitform-ok" class="btn btn--gold" style="margin-top:14px;display:inline-block;">Abrir WhatsApp</a>' +
+          '</div>';
+      }
+    });
+  })();
+</script>

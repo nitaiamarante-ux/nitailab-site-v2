@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
+import LpOrigemTracking from '../components/LpOrigemTracking.astro';
+import LpLeadForms from '../components/LpLeadForms.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const whatsappHref = 'https://wa.me/5531982976006?text=Oi%2C%20quero%20saber%20mais%20sobre%20o%20Resgate%20seu%20Google';
 const whatsappAuditoria = 'https://wa.me/5531982976006?text=Oi%2C%20quero%20o%20raio-X%20gr%C3%A1tis%20do%20meu%20Google';
@@ -2281,109 +2283,7 @@ const whatsappAuditoria = 'https://wa.me/5531982976006?text=Oi%2C%20quero%20o%20
   }
 </style>
 
-<script is:inline>
-  // === ORIGEM (UTM/fbclid/gclid) + rastreio de clique no WhatsApp ===
-  // Lê a origem 1x (na carga) e guarda em sessionStorage — sobrevive à
-  // navegação dentro da mesma sessão. Todo clique em link wa.me ganha uma
-  // linha discreta de origem no texto pré-preenchido, dispara Contact/
-  // whatsapp_click e manda um evento leve (sem alerta) pro nl-tracker.
-  (function () {
-    var NL_EVENT_ENDPOINT = 'https://nl-tracker.nitai-amarante.workers.dev/event';
-
-    function paramsDaUrl() {
-      try { return new URLSearchParams(window.location.search); } catch (e) { return null; }
-    }
-
-    function capturarOrigem() {
-      var p = paramsDaUrl();
-      if (!p) return;
-      var origem = {};
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
-        var v = p.get(k);
-        if (v) origem[k] = v;
-      });
-      if (p.get('fbclid')) origem.fbclid = '1';
-      if (p.get('gclid')) origem.gclid = '1';
-      if (Object.keys(origem).length) {
-        try { sessionStorage.setItem('rg_origin', JSON.stringify(origem)); } catch (e) {}
-      }
-    }
-    capturarOrigem();
-
-    function getOrigem() {
-      try { return JSON.parse(sessionStorage.getItem('rg_origin') || '{}'); } catch (e) { return {}; }
-    }
-
-    // Rótulo curto pro texto do WhatsApp — nunca expõe fbclid/gclid inteiro
-    function rotuloOrigem(o) {
-      if (o.utm_source && o.utm_campaign) return o.utm_source + '/' + o.utm_campaign;
-      if (o.utm_source) return o.utm_source;
-      if (o.gclid) return 'google';
-      if (o.fbclid) return 'meta';
-      return null;
-    }
-
-    // Origem resumida pra eventos (gtag/fbq/tracker) — sem PII
-    function origemParaEvento(o) {
-      return {
-        utm_source: o.utm_source || null,
-        utm_medium: o.utm_medium || null,
-        utm_campaign: o.utm_campaign || null,
-        utm_content: o.utm_content || null,
-        tem_fbclid: !!o.fbclid,
-        tem_gclid: !!o.gclid,
-      };
-    }
-
-    function ehDono() {
-      try { return localStorage.getItem('nl_owner') === '1'; } catch (e) { return false; }
-    }
-
-    window.__rgOrigin = { get: getOrigem, rotulo: rotuloOrigem, evento: origemParaEvento, ehDono: ehDono, endpoint: NL_EVENT_ENDPOINT };
-
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[href*="wa.me/"]');
-      if (!a) return;
-
-      var o = getOrigem();
-      var rot = rotuloOrigem(o);
-
-      // Anexa (ou substitui) a linha de origem no texto pré-preenchido —
-      // pulado nos botões "Abrir WhatsApp" pós-lead, que já montam o texto
-      // completo (com ref + id do lead) na hora do envio do formulário.
-      if (a.getAttribute('data-wa-no-rewrite') !== '1') {
-        try {
-          var u = new URL(a.href);
-          var texto = (u.searchParams.get('text') || '').replace(/\s*\(ref:[^)]*\)\s*$/, '');
-          if (rot) texto += ' (ref: ' + rot + ')';
-          u.searchParams.set('text', texto);
-          a.href = u.toString();
-        } catch (err) {}
-      }
-
-      var posicao = a.getAttribute('data-wa-pos') || a.id || (a.textContent || '').trim().slice(0, 40) || 'link';
-      var evOrigem = origemParaEvento(o);
-      var dono = ehDono();
-
-      if (!dono && typeof fbq === 'function') {
-        fbq('track', 'Contact', Object.assign({content_name: 'Resgate seu Google', posicao: posicao}, evOrigem));
-      }
-      if (!dono && typeof gtag === 'function') {
-        gtag('event', 'whatsapp_click', Object.assign({posicao: posicao}, evOrigem));
-      }
-
-      // POST não-bloqueante — nunca atrasa a navegação pro WhatsApp
-      try {
-        var payload = JSON.stringify({tipo: 'wa_click', posicao: posicao, origem: evOrigem, page: window.location.href, teste: dono});
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(NL_EVENT_ENDPOINT, new Blob([payload], {type: 'application/json'}));
-        } else {
-          fetch(NL_EVENT_ENDPOINT, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: payload, keepalive: true}).catch(function () {});
-        }
-      } catch (err) {}
-    }, true);
-  })();
-</script>
+<LpOrigemTracking />
 
 <script>
   (function() {
@@ -2501,108 +2401,7 @@ const whatsappAuditoria = 'https://wa.me/5531982976006?text=Oi%2C%20quero%20o%20
   })();
 </script>
 
-<script is:inline>
-  // === FORMULÁRIOS (diagForm/exitForm) → POST /lead + abre o WhatsApp ===
-  // O objetivo do lead é abrir a conversa de venda no WhatsApp. O POST pro
-  // nl-tracker não pode travar isso: ok ou erro, o formulário segue pro
-  // WhatsApp — o lead não pode se perder (ordem do Nitai, 26/09).
-  (function () {
-    var NL_LEAD_ENDPOINT = 'https://nl-tracker.nitai-amarante.workers.dev/lead';
-    var WA_NUMERO = '5531982976006';
-
-    function origemAtual() {
-      var o = (window.__rgOrigin && window.__rgOrigin.get()) || {};
-      return (window.__rgOrigin && window.__rgOrigin.evento(o)) || {};
-    }
-    function rotuloAtual() {
-      var o = (window.__rgOrigin && window.__rgOrigin.get()) || {};
-      return window.__rgOrigin ? window.__rgOrigin.rotulo(o) : null;
-    }
-    function ehDono() {
-      return !!(window.__rgOrigin && window.__rgOrigin.ehDono());
-    }
-
-    function montarLinkWa(negocio, cidade, idCurto) {
-      var texto = 'Oi! Sou da ' + negocio + ', em ' + cidade + '. Quero meu raio-X grátis.';
-      var rot = rotuloAtual();
-      if (rot) texto += ' (ref: ' + rot + ')';
-      if (idCurto) texto += ' (#' + idCurto + ')';
-      return 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(texto);
-    }
-
-    function dispararLead(nomeForm) {
-      if (ehDono()) return;
-      if (typeof fbq === 'function') fbq('track', 'Lead');
-      if (typeof gtag === 'function') gtag('event', 'generate_lead', {form: nomeForm});
-    }
-
-    function ligar(formId, aoAbrirWhatsapp) {
-      var form = document.getElementById(formId);
-      if (!form) return;
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        var negocio = ((form.negocio && form.negocio.value) || '').trim();
-        var cidade = ((form.cidade && form.cidade.value) || '').trim();
-        var whatsapp = ((form.whatsapp && form.whatsapp.value) || '').trim();
-        var nome = ((form.nome && form.nome.value) || '').trim();
-        var email = ((form.email && form.email.value) || '').trim();
-
-        var payload = {
-          negocio: negocio, cidade: cidade, whatsapp: whatsapp,
-          nome: nome || null, email: email || null,
-          form: formId, origem: origemAtual(), page: window.location.href,
-          teste: ehDono(),
-        };
-
-        function seguirPraWhatsapp(idCurto) {
-          dispararLead(formId);
-          var waHref = montarLinkWa(negocio, cidade, idCurto);
-          if (aoAbrirWhatsapp) aoAbrirWhatsapp(waHref);
-          window.location.href = waHref;
-        }
-
-        fetch(NL_LEAD_ENDPOINT, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(payload),
-        }).then(function (res) {
-          if (!res.ok) throw new Error('lead recusado (' + res.status + ')');
-          return res.json();
-        }).then(function (data) {
-          seguirPraWhatsapp(data && data.id);
-        }).catch(function () {
-          // O lead não pode se perder: segue pro WhatsApp mesmo sem confirmar o POST
-          seguirPraWhatsapp(null);
-        });
-      });
-    }
-
-    ligar('diagForm', function (waHref) {
-      var diagForm = document.getElementById('diagForm');
-      var diagOk = document.getElementById('diagOk');
-      var diagOkWaBtn = document.getElementById('diagOkWaBtn');
-      if (diagForm) diagForm.style.display = 'none';
-      if (diagOk) diagOk.style.display = 'block';
-      if (diagOkWaBtn) { diagOkWaBtn.href = waHref; diagOkWaBtn.style.display = 'inline-block'; }
-    });
-
-    ligar('exitForm', function (waHref) {
-      var formPopup = document.getElementById('formPopup');
-      if (!formPopup) return;
-      var box = formPopup.querySelector('.rg-popup__box');
-      if (box) {
-        box.innerHTML = '<div style="padding:20px 0;text-align:center;">' +
-          '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-          '<h3 style="font-family:Urbanist,sans-serif;font-size:22px;font-weight:800;color:var(--dark);margin:20px 0 8px;">Abrindo seu WhatsApp…</h3>' +
-          '<p style="font-family:Outfit,sans-serif;font-size:15px;color:var(--mid);font-weight:300;">É só apertar enviar.</p>' +
-          '<a href="' + waHref + '" data-wa-no-rewrite="1" data-wa-pos="exitform-ok" class="btn btn--gold" style="margin-top:14px;display:inline-block;">Abrir WhatsApp</a>' +
-          '</div>';
-      }
-    });
-  })();
-</script>
+<LpLeadForms />
 
 <script is:inline>
   // === INTELIGÊNCIA DE COMPORTAMENTO ===
