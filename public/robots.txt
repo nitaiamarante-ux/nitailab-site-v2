@@ -17,4 +17,4 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
-Sitemap: https://nitailab.com.br/sitemap.xml
+Sitemap: https://nitailab.com.br/sitemap-index.xml
